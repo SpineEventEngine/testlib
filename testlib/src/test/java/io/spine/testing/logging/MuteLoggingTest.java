@@ -18,16 +18,27 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.testing;
+package io.spine.testing.logging;
 
-import org.junit.Test;
+import com.google.common.truth.ObjectArraySubject;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.Extension;
 
-import static io.spine.testing.Tests.assertHasPrivateParameterlessCtor;
+import static com.google.common.truth.Truth.assertThat;
 
-public class DisplayNamesShould {
+@DisplayName("@MuteLogging should")
+class MuteLoggingTest {
 
     @Test
-    public void have_utility_ctor() {
-        assertHasPrivateParameterlessCtor(DisplayNames.class);
+    @DisplayName("be marked as an extension")
+    void annotated() {
+        Class<MuteLogging> annotation = MuteLogging.class;
+        ExtendWith extendsWith = annotation.getAnnotation(ExtendWith.class);
+        Class<? extends Extension>[] extensions = extendsWith.value();
+        ObjectArraySubject<Class<? extends Extension>> assertExtensions = assertThat(extensions);
+        assertExtensions.hasLength(1);
+        assertExtensions.asList().contains(MuteLoggingExtension.class);
     }
 }

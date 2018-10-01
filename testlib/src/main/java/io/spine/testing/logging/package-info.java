@@ -18,16 +18,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.testing;
+/**
+ * This package provides Truth-based classes for testing logging.
+ */
+@CheckReturnValue
+@ParametersAreNonnullByDefault
+package io.spine.testing.logging;
 
-import org.junit.Test;
+import com.google.errorprone.annotations.CheckReturnValue;
 
-import static io.spine.testing.Tests.assertHasPrivateParameterlessCtor;
-
-public class DisplayNamesShould {
-
-    @Test
-    public void have_utility_ctor() {
-        assertHasPrivateParameterlessCtor(DisplayNames.class);
-    }
-}
+import javax.annotation.ParametersAreNonnullByDefault;

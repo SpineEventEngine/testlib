@@ -18,16 +18,28 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.testing;
+package io.spine.testing.logging;
 
-import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import static io.spine.testing.Tests.assertHasPrivateParameterlessCtor;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-public class DisplayNamesShould {
-
-    @Test
-    public void have_utility_ctor() {
-        assertHasPrivateParameterlessCtor(DisplayNames.class);
-    }
+/**
+ * Mutes all the logging for a certain test case or test suite.
+ *
+ * <p>Any kind of output into the standard output streams is blocked by this annotation.
+ *
+ * <p>If the test fails, the output is printed into the standard error stream.
+ *
+ * <p>After the test completes, the standard output capabilities are restored.
+ *
+ * @author Dmytro Dashenkov
+ */
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@ExtendWith(MuteLoggingExtension.class)
+public @interface MuteLogging {
 }
