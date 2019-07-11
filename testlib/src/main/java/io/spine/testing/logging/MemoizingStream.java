@@ -25,7 +25,6 @@ import com.google.common.annotations.VisibleForTesting;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintStream;
 
 /**
  * An {@link OutputStream} which stores its input.
@@ -33,33 +32,16 @@ import java.io.PrintStream;
 final class MemoizingStream extends OutputStream {
 
     private static final int ONE_MEBI_BYTE = 1024 * 1024;
-    private final PrintStream delegate;
     private final ByteArrayOutputStream memory;
 
     MemoizingStream() {
         super();
         memory = new ByteArrayOutputStream(ONE_MEBI_BYTE);
-        delegate = new PrintStream(memory, true);
     }
 
     @Override
     public void write(int b) {
-        delegate.write(b);
-    }
-
-    @Override
-    public void write(byte[] b) throws IOException {
-        delegate.write(b);
-    }
-
-    @Override
-    public void flush() {
-        delegate.flush();
-    }
-
-    @Override
-    public void close() {
-        delegate.close();
+        memory.write(b);
     }
 
     @VisibleForTesting
