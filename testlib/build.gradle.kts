@@ -1,3 +1,5 @@
+import io.spine.gradle.internal.Deps
+
 /*
  * Copyright 2020, TeamDev. All rights reserved.
  *
@@ -17,27 +19,18 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-group = 'io.spine'
+
+group = "io.spine"
 
 dependencies {
     /*
         Expose tools we use as transitive dependencies to simplify dependency management in
         sub-projects.
     */
-    api(deps.build.protobuf,
-        deps.test.junit5Api,
-        deps.test.truth,
-        deps.test.guavaTestlib,
-        deps.test.hamcrest)
-    implementation project(':base')
-}
-
-/*
- * This module declares protobuf messages and uses them in tests, hence the need for the Protobuf
- * compiler
- */
-protobuf {
-    protoc {
-        artifact = deps.build.protoc
-    }
+    Deps.build.protobuf.forEach { api(it) }
+    Deps.test.junit5Api.forEach { api(it) }
+    Deps.test.truth.forEach { api(it) }
+    api(Deps.test.guavaTestlib)
+    api(Deps.test.hamcrest)
+    implementation(project(":base"))
 }
