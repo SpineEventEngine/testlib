@@ -24,55 +24,27 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.testing.logging;
+package io.spine.testing.logging.mute;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import com.google.common.truth.ObjectArraySubject;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.Extension;
 
-/**
- * An {@link OutputStream} which stores its input.
- */
-public final class MemoizingStream extends OutputStream {
+import static com.google.common.truth.Truth.assertThat;
 
-    private static final int ONE_MEBI_BYTE = 1024 * 1024;
-    private final ByteArrayOutputStream memory;
+@DisplayName("@MuteLogging should")
+class MuteLoggingTest {
 
-    public MemoizingStream() {
-        super();
-        memory = new ByteArrayOutputStream(ONE_MEBI_BYTE);
-    }
-
-    @Override
-    public void write(int b) {
-        memory.write(b);
-    }
-
-    /**
-     * Obtains the size of the memoized output in bytes.
-     */
-    public long size() {
-        return memory.size();
-    }
-
-    /**
-     * Clears the memoized output.
-     */
-    public void reset() {
-        memory.reset();
-    }
-
-    /**
-     * Copies the memoized input into the given stream and {@linkplain #reset() clears} memory.
-     *
-     * @param stream
-     *         the target stream
-     * @throws IOException
-     *         if the target stream throws an {@link IOException} on a write operation
-     */
-    public synchronized void flushTo(OutputStream stream) throws IOException {
-        byte[] bytes = memory.toByteArray();
-        stream.write(bytes);
-        reset();
+    @Test
+    @DisplayName("be marked as an extension")
+    void annotated() {
+        Class<MuteLogging> annotation = MuteLogging.class;
+        ExtendWith extendsWith = annotation.getAnnotation(ExtendWith.class);
+        Class<? extends Extension>[] extensions = extendsWith.value();
+        ObjectArraySubject<Class<? extends Extension>> assertExtensions = assertThat(extensions);
+        assertExtensions.hasLength(1);
+        assertExtensions.asList().contains(MuteLoggingExtension.class);
     }
 }

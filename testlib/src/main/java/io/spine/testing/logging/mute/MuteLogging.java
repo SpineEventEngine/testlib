@@ -24,55 +24,31 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.testing.logging;
+package io.spine.testing.logging.mute;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * An {@link OutputStream} which stores its input.
+ * Mutes all the logging for a certain test case or test suite.
+ *
+ * <p>Any kind of output into the standard output streams is blocked by this annotation.
+ *
+ * <p>If the test fails, the stack trace is printed into the standard error stream.
+ *
+ * <p>After the test completes, the standard output capabilities are restored.
  */
-public final class MemoizingStream extends OutputStream {
-
-    private static final int ONE_MEBI_BYTE = 1024 * 1024;
-    private final ByteArrayOutputStream memory;
-
-    public MemoizingStream() {
-        super();
-        memory = new ByteArrayOutputStream(ONE_MEBI_BYTE);
-    }
-
-    @Override
-    public void write(int b) {
-        memory.write(b);
-    }
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@ExtendWith(MuteLoggingExtension.class)
+public @interface MuteLogging {
 
     /**
-     * Obtains the size of the memoized output in bytes.
+     * The reason this annotated test class or test method has logging muted.
      */
-    public long size() {
-        return memory.size();
-    }
-
-    /**
-     * Clears the memoized output.
-     */
-    public void reset() {
-        memory.reset();
-    }
-
-    /**
-     * Copies the memoized input into the given stream and {@linkplain #reset() clears} memory.
-     *
-     * @param stream
-     *         the target stream
-     * @throws IOException
-     *         if the target stream throws an {@link IOException} on a write operation
-     */
-    public synchronized void flushTo(OutputStream stream) throws IOException {
-        byte[] bytes = memory.toByteArray();
-        stream.write(bytes);
-        reset();
-    }
+    String value() default "";
 }
