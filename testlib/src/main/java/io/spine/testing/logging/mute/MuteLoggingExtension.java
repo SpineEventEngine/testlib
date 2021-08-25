@@ -24,55 +24,47 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.testing.logging;
+package io.spine.testing.logging.mute;
 
-import java.io.ByteArrayOutputStream;
+import org.junit.jupiter.api.extension.AfterEachCallback;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
+
 import java.io.IOException;
-import java.io.OutputStream;
+import java.util.Optional;
 
 /**
- * An {@link OutputStream} which stores its input.
+ * A JUnit {@link org.junit.jupiter.api.extension.Extension Extension} which mutes all the logs
+ * for a test case.
+ *
+ * <p>Do not use this extension directly. Mark the target test method or class with
+ * the {@link MuteLogging} annotation.
+ *
+ * @see MuteLogging
  */
-public final class MemoizingStream extends OutputStream {
+public final class MuteLoggingExtension implements BeforeEachCallback, AfterEachCallback {
 
-    private static final int ONE_MEBI_BYTE = 1024 * 1024;
-    private final ByteArrayOutputStream memory;
-
-    public MemoizingStream() {
-        super();
-        memory = new ByteArrayOutputStream(ONE_MEBI_BYTE);
+    private static final String ROOT = "";
+    private final MutingLoggerTap loggerTap;
+    /**
+     * Creates new instance of the extension, redirecting to the stream which stores the output
+     * into memory.
+     */
+    public MuteLoggingExtension() {
+        this.loggerTap = new MutingLoggerTap(ROOT);
     }
 
     @Override
-    public void write(int b) {
-        memory.write(b);
+    public void beforeEach(ExtensionContext context) {
+        loggerTap.install();
     }
 
-    /**
-     * Obtains the size of the memoized output in bytes.
-     */
-    public long size() {
-        return memory.size();
-    }
-
-    /**
-     * Clears the memoized output.
-     */
-    public void reset() {
-        memory.reset();
-    }
-
-    /**
-     * Copies the memoized input into the given stream and {@linkplain #reset() clears} memory.
-     *
-     * @param stream
-     *         the target stream
-     * @throws IOException
-     *         if the target stream throws an {@link IOException} on a write operation
-     */
-    public synchronized void flushTo(OutputStream stream) throws IOException {
-        byte[] bytes = memory.toByteArray();
-        stream.write(bytes);
-        reset();
+    @Override
+    public void afterEach(ExtensionContext context) throws IOException {
+        Optional<Throwable> exception = context.getExecutionException();
+        if (exception.isPresent()) {
+            loggerTap.flushToSystemErr();
+        }
+        loggerTap.remove();
     }
 }
