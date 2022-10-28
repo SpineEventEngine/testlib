@@ -34,6 +34,10 @@ import io.spine.internal.gradle.protobuf.setup
 
 group = "io.spine.tools"
 
+plugins {
+    id("detekt-code-analysis")
+}
+
 dependencies {
     /*
         Expose tools we use as transitive dependencies to simplify dependency
@@ -46,12 +50,15 @@ dependencies {
     implementation(project(":base"))
 }
 
-val generatedDir by extra("$projectDir/generated")
-
 protobuf {
+    val generatedDir by project.extra("$projectDir/generated")
     generateProtoTasks {
         for (task in all()) {
             task.setup(generatedDir)
         }
     }
+}
+
+detekt {
+    baseline = file("config/detekt-baseline.xml")
 }
