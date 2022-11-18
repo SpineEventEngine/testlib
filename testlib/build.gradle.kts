@@ -28,6 +28,7 @@ import com.google.protobuf.gradle.generateProtoTasks
 import com.google.protobuf.gradle.protobuf
 import io.spine.internal.dependency.Guava
 import io.spine.internal.dependency.JUnit
+import io.spine.internal.dependency.Kotest
 import io.spine.internal.dependency.Protobuf
 import io.spine.internal.dependency.Truth
 import io.spine.internal.gradle.protobuf.setup
@@ -35,7 +36,7 @@ import io.spine.internal.gradle.protobuf.setup
 group = "io.spine.tools"
 
 plugins {
-    id("detekt-code-analysis")
+    `detekt-code-analysis`
 }
 
 dependencies {
@@ -43,19 +44,23 @@ dependencies {
         Expose tools we use as transitive dependencies to simplify dependency
         management in subprojects.
     */
-    Protobuf.libs.forEach { api(it) }
-    JUnit.api.forEach { api(it) }
-    Truth.libs.forEach { api(it) }
-    api(Guava.testLib)
-    api(kotlin("test-junit5"))
+    (Protobuf.libs
+            + JUnit.api
+            + Truth.libs
+            + Guava.testLib
+            + kotlin("test-junit5")
+            + Kotest.assertions).forEach {
+        api(it)
+    }
+
     implementation(project(":base"))
 }
 
+// For generating test fixtures.
 protobuf {
-    val generatedDir by project.extra("$projectDir/generated")
     generateProtoTasks {
         for (task in all()) {
-            task.setup(generatedDir)
+            task.setup("$projectDir/generated")
         }
     }
 }
