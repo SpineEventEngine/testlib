@@ -24,31 +24,32 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.testing;
+package io.spine.testing
 
-import org.junit.jupiter.api.Tag;
+import com.google.common.testing.NullPointerTester.Visibility
+import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
+@DisplayName("`ClassTest` should")
+class ClassTestSpec {
 
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.TYPE;
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
+    @Test
+    fun `provide constructor with minimal static method visibility`() {
+        val suite = object : ClassTest<StubTestSubject>(
+            StubTestSubject::class.java,
+            Visibility.PACKAGE
+        ) {}
 
-/**
- * Marks tests which are known to be slow and should not normally be run together with
- * the main test suite.
- *
- * <p>Slow tests typically are functional test, which may call network API, perform I/O operations,
- * spawn many threads and wait for execution, etc.
- *
- * <p>This annotation is an alias for {@code Tag("slow")}. Adding the {@code slow} tag on a test
- * case produces the same effect as adding this annotation.
- */
-@Retention(RUNTIME)
-@Target({TYPE, METHOD})
-@Tag(SlowTest.TAG)
-public @interface SlowTest {
+        suite.minimalStaticMethodVisibility() shouldBe Visibility.PACKAGE
+    }
 
-    String TAG = "slow";
+    @Test
+    fun `assume 'PUBLIC' minimal visibility of static methods`() {
+        val suite = object : ClassTest<StubTestSubject>(StubTestSubject::class.java) {}
+        
+        suite.minimalStaticMethodVisibility() shouldBe Visibility.PUBLIC
+    }
 }
+
+class StubTestSubject
