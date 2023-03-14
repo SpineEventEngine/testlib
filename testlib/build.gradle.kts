@@ -35,6 +35,7 @@ group = "io.spine.tools"
 plugins {
     id("module")
     id("compile-protobuf")
+    id("kotlin-module")
 }
 
 // Suppress `TooManyFunctions` for `TruthExtensions.kt` file.
