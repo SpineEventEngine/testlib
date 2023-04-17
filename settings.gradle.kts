@@ -31,4 +31,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "spine-testlib"
+// Do not use `spine-` prefix for this single-module project.
+// It would be added automatically when publishing.
+rootProject.name = "testlib"
