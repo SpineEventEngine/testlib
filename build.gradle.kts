@@ -31,10 +31,13 @@ import io.spine.internal.dependency.JUnit
 import io.spine.internal.dependency.Kotest
 import io.spine.internal.dependency.Protobuf
 import io.spine.internal.dependency.Truth
+import io.spine.internal.gradle.checkstyle.CheckStyleConfig
+import io.spine.internal.gradle.javadoc.JavadocConfig
 import io.spine.internal.gradle.publish.IncrementGuard
 import io.spine.internal.gradle.publish.PublishingRepos
-import io.spine.internal.gradle.publish.PublishingRepos.gitHub
 import io.spine.internal.gradle.publish.spinePublishing
+import io.spine.internal.gradle.report.license.LicenseReporter
+import io.spine.internal.gradle.report.pom.PomGenerator
 import io.spine.internal.gradle.standardToSpineSdk
 
 plugins {
@@ -88,3 +91,9 @@ spinePublishing {
         java = true
     }
 }
+
+CheckStyleConfig.applyTo(project)
+JavadocConfig.applyTo(project)
+PomGenerator.applyTo(project)
+LicenseReporter.generateReportIn(project)
+LicenseReporter.mergeAllReports(project)
