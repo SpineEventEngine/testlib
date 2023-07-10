@@ -134,6 +134,11 @@ private class FileExist(
 
 /**
  * Tells if the class [C] has private constructor with no parameters.
+ *
+ * Usage:
+ * ```
+ * val hasCtor = hasPrivateParameterlessCtor<MyClass>()
+ * ```
  */
 public inline fun <reified C: Any> hasPrivateParameterlessCtor(): Boolean =
     hasPrivateParameterlessCtor(C::class.java)
