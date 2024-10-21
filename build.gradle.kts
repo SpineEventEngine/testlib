@@ -25,7 +25,6 @@
  */
 
 import io.spine.internal.dependency.CheckerFramework
-import io.spine.internal.dependency.Flogger
 import io.spine.internal.dependency.Guava
 import io.spine.internal.dependency.JUnit
 import io.spine.internal.dependency.Kotest
@@ -65,6 +64,8 @@ detekt {
 repositories.standardToSpineSdk()
 
 dependencies {
+    compileOnly(CheckerFramework.annotations)
+
     /*
         Expose tools we use as transitive dependencies to simplify dependency
         management in projects that use Spine Testlib.
@@ -79,9 +80,11 @@ dependencies {
     implementation(Spine.Logging.lib)
 
     @Suppress("DEPRECATION")
-    implementation(Flogger.lib)?.because("io.spine.testing.logging.LogTruth")
-
-    compileOnly(CheckerFramework.annotations)
+    run {
+        val reason = "io.spine.testing.logging.LogTruth"
+        implementation(io.spine.internal.dependency.Flogger.lib)?.because(reason)
+        runtimeOnly(io.spine.internal.dependency.Flogger.Runtime.systemBackend)?.because(reason)
+    }
 }
 
 spinePublishing {
