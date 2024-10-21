@@ -33,6 +33,7 @@ import io.spine.internal.dependency.JUnit
 import io.spine.internal.dependency.JavaX
 import io.spine.internal.dependency.Kotlin
 import io.spine.internal.dependency.Protobuf
+import io.spine.internal.dependency.Spine
 import io.spine.internal.gradle.checkstyle.CheckStyleConfig
 import io.spine.internal.gradle.excludeProtobufLite
 import io.spine.internal.gradle.forceVersions
@@ -122,7 +123,8 @@ fun Module.forceConfigurations() {
                     JUnit.bom,
                     JUnit.runner,
                     Dokka.BasePlugin.lib,
-                    Asm.lib
+                    Asm.lib,
+                    Spine.Logging.lib,
                 )
             }
         }
