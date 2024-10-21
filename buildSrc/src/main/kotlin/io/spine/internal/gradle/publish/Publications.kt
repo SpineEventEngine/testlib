@@ -1,5 +1,5 @@
 /*
- * Copyright 2022, TeamDev. All rights reserved.
+ * Copyright 2024, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -80,13 +80,35 @@ internal sealed class PublicationHandler(
     }
 
     /**
-     * Takes a group name and a version from the given [project] and assigns
-     * them to this publication.
+     * Copies the attributes of Gradle [Project] to this [MavenPublication].
+     *
+     * The following project attributes are copied:
+     *  * [group][Project.getGroup];
+     *  * [version][Project.getVersion];
+     *  * [description][Project.getDescription].
+     *
+     * Also, this function adds the [artifactPrefix][SpinePublishing.artifactPrefix] to
+     * the [artifactId][MavenPublication.setArtifactId] of this publication,
+     * if the prefix is not added yet.
+     *
+     * Finally, the Apache Software License 2.0 is set as the only license
+     * under which the published artifact is distributed.
      */
-    protected fun MavenPublication.assignMavenCoordinates() {
+    protected fun MavenPublication.copyProjectAttributes() {
         groupId = project.group.toString()
-        artifactId = project.spinePublishing.artifactPrefix + artifactId
+        val prefix = project.spinePublishing.artifactPrefix
+        if (!artifactId.startsWith(prefix)) {
+            artifactId = prefix + artifactId
+        }
         version = project.version.toString()
+        pom.description.set(project.description)
+
+        pom.licenses {
+            license {
+                name.set("The Apache Software License, Version 2.0")
+                url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+            }
+        }
     }
 }
 
@@ -110,7 +132,7 @@ private fun RepositoryHandler.register(project: Project, repository: Repository)
 /**
  * A publication for a typical Java project.
  *
- * In Gradle, in order to publish something somewhere one should create a publication.
+ * In Gradle, to publish something, one should create a publication.
  * A publication has a name and consists of one or more artifacts plus information about
  * those artifacts – the metadata.
  *
@@ -142,7 +164,7 @@ internal class StandardJavaPublicationHandler(
         val jars = project.artifacts(jarFlags)
         val publications = project.publications
         publications.create<MavenPublication>("mavenJava") {
-            assignMavenCoordinates()
+            copyProjectAttributes()
             specifyArtifacts(jars)
         }
     }
@@ -191,14 +213,14 @@ internal class StandardJavaPublicationHandler(
  *
  * Such publications should be treated differently than [StandardJavaPublicationHandler],
  * which is <em>created</em> for a module. Instead, since the publications are already declared,
- * this class only [assigns maven coordinates][assignMavenCoordinates].
+ * this class only [assigns maven coordinates][copyProjectAttributes].
  *
  * A module which declares custom publications must be specified in
  * the [SpinePublishing.modulesWithCustomPublishing] property.
  *
  * If a module with [publications] declared locally is not specified as one with custom publishing,
  * it may cause a name clash between an artifact produced by the [standard][MavenPublication]
- * publication, and custom ones. In order to have both standard and custom publications,
+ * publication, and custom ones. To have both standard and custom publications,
  * please specify custom artifact IDs or classifiers for each custom publication.
  */
 internal class CustomPublicationHandler(project: Project, destinations: Set<Repository>) :
@@ -206,7 +228,7 @@ internal class CustomPublicationHandler(project: Project, destinations: Set<Repo
 
     override fun handlePublications() {
         project.publications.forEach {
-            (it as MavenPublication).assignMavenCoordinates()
+            (it as MavenPublication).copyProjectAttributes()
         }
     }
 }

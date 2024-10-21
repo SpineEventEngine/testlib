@@ -1,11 +1,11 @@
 /*
- * Copyright 2022, TeamDev. All rights reserved.
+ * Copyright 2024, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -27,17 +27,17 @@
 package io.spine.internal.dependency
 
 // https://github.com/forge/roaster
-@Suppress("unused")
+@Suppress("unused", "ConstPropertyName")
 object Roaster {
 
     /**
-     * Do not advance this version further because it would break compatibility with Java 8
-     * projects. Starting from the following version Roaster has a shaded version of Eclipse JFace
-     * built with Java 11.
+     * This is the last version build with Java 11.
      *
-     * Please see [this issue][https://github.com/SpineEventEngine/config/issues/220] for details.
+     * Starting from the version
+     * [2.29.0.Final](https://github.com/forge/roaster/releases/tag/2.29.0.Final),
+     * Roaster requires Java 17.
      */
-    private const val version = "2.24.0.Final"
+    private const val version = "2.28.0.Final"
 
     const val api = "org.jboss.forge.roaster:roaster-api:${version}"
     const val jdt = "org.jboss.forge.roaster:roaster-jdt:${version}"

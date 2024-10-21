@@ -30,6 +30,7 @@ import io.spine.internal.dependency.Guava
 import io.spine.internal.dependency.JUnit
 import io.spine.internal.dependency.Kotest
 import io.spine.internal.dependency.Protobuf
+import io.spine.internal.dependency.Spine
 import io.spine.internal.dependency.Truth
 import io.spine.internal.gradle.checkstyle.CheckStyleConfig
 import io.spine.internal.gradle.javadoc.JavadocConfig
@@ -75,14 +76,17 @@ dependencies {
             + Kotest.assertions).forEach {
         api(it)
     }
-    implementation(Flogger.lib)
+    implementation(Spine.Logging.lib)
+
+    @Suppress("DEPRECATION")
+    implementation(Flogger.lib)?.because("io.spine.testing.logging.LogTruth")
+
     compileOnly(CheckerFramework.annotations)
 }
 
 spinePublishing {
     destinations = with(PublishingRepos) {
         setOf(
-            cloudRepo,
             cloudArtifactRegistry,
             gitHub("testlib")
         )
