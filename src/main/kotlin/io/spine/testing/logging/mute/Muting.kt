@@ -33,10 +33,10 @@ import io.spine.logging.context.LogLevelMap
 import io.spine.logging.context.ScopedLoggingContext
 
 /**
- * Mutes logging for the packages with the given names when executing the given [block].
+ * Mutes logging for the loggers with the given names when executing the given [block].
  */
-public fun withLoggingMutedIn(vararg packageNames: String, block: () -> Unit) {
-    val levels = packageNames.associateWith { Level.OFF }
+public fun withLoggingMutedIn(vararg loggerNames: String, block: () -> Unit) {
+    val levels = loggerNames.associateWith { Level.OFF }
     val logLevelMap = LogLevelMap.create(levels)
     ScopedLoggingContext.newContext().withLogLevelMap(logLevelMap).execute {
         block()
