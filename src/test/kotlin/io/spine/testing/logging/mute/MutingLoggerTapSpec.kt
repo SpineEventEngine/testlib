@@ -1,11 +1,11 @@
 /*
- * Copyright 2022, TeamDev. All rights reserved.
+ * Copyright 2024, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -23,144 +23,126 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package io.spine.testing.logging.mute
 
-package io.spine.testing.logging.mute;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.logging.Logger;
-
-import static com.google.common.truth.Truth.assertThat;
-import static io.spine.testing.TestValues.randomString;
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
+import io.kotest.matchers.string.shouldNotContain
+import io.spine.logging.testing.tapConsole
+import io.spine.testing.TestValues.randomString
+import java.io.ByteArrayOutputStream
+import java.io.IOException
+import java.nio.charset.Charset
+import java.util.logging.Logger
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 
 @DisplayName("`MutingLoggerTap` should")
-class MutingLoggerTapTest extends SystemOutputTest {
+internal class MutingLoggerTapSpec {
 
-    private MutingLoggerTap tap;
+    private val name: String = javaClass.name
+    private val logger: Logger = Logger.getLogger(name)
+
+    private lateinit var tap: MutingLoggerTap
 
     @BeforeEach
-    void createTap() {
-        tap = new MutingLoggerTap(name());
+    fun createTap() {
+        tap = MutingLoggerTap(name)
     }
 
-    @Nested
-    @DisplayName("when not installed, NOT intercept")
-    class NonInterception {
+    @Nested internal inner class
+    `when not installed, NOT intercept` {
 
         @Test
-        @DisplayName("regular logging")
-        void regularLog() {
-            var expected = "Test non interception.";
-            logger().info(expected);
-
-            assertThat(loggingOutput()).contains(expected);
+        fun `regular logging`() {
+            val expected = "Test non interception."
+            val output = tapConsole {
+                logger.info(expected)
+            }
+            output shouldContain expected
         }
 
         @Test
-        @DisplayName("error logging")
-        void errorLog() {
-            var expectedError = "Testing error non interception.";
-            logger().severe(expectedError);
-
-            assertThat(loggingOutput()).contains(expectedError);
+        fun `error logging`() {
+            val expectedError = "Testing error non interception."
+            val output = tapConsole {
+                logger.severe(expectedError)
+            }
+            output shouldContain expectedError
         }
     }
 
-    @Nested
-    @DisplayName("intercept")
-    class Interception {
+    @Nested internal inner class
+    intercept {
 
         @BeforeEach
-        void install() {
-            tap.install();
-        }
+        fun install() = tap.install()
 
         @AfterEach
-        void remove() {
-            tap.remove();
+        fun remove() = tap.remove()
+
+        @Test
+        fun `regular logging`() {
+            val msg = "Test interception."
+            val output = tapConsole {
+                logger.info(msg)
+            }
+            output shouldNotContain msg
         }
 
         @Test
-        @DisplayName("regular logging")
-        void regularLog() {
-            var expected = "Test interception.";
-            logger().info(expected);
-
-            assertThat(loggingOutput()).doesNotContain(expected);
+        fun `error logging`() {
+            val errorMessage = "Testing error interception."
+            val output = tapConsole {
+                logger.severe(errorMessage)
+            }
+            output shouldNotContain errorMessage
         }
 
         @Test
-        @DisplayName("error logging")
-        void errorLog() {
-            var expectedError = "Testing error interception.";
-            logger().severe(expectedError);
+        fun `redirecting to 'MemoizingStream'`() {
+            tap.streamSize() shouldBe 0
+            val msg = randomString()
 
-            assertThat(loggingOutput()).doesNotContain(expectedError);
+            logger.info(msg)
+
+            (tap.streamSize() > 0) shouldBe true
         }
 
-        @Test
-        @DisplayName("redirecting to `MemoizingStream`")
-        void redirection() {
-            assertThat(tap.streamSize())
-                    .isEqualTo(0);
-            var msg = randomString();
-            var logger = logger();
+        @Nested internal inner class
+        `flush to 'OutputStream'` {
 
-            logger.info(msg);
-
-            assertThat(tap.streamSize() > 0)
-                    .isTrue();
-        }
-
-        @Nested
-        @DisplayName("flush to `OutputStream`")
-        class Flushing {
-
-            private ByteArrayOutputStream stream;
-            private String logMessage;
-            private String errorMessage;
+            private lateinit var stream: ByteArrayOutputStream
+            private lateinit var logMessage: String
+            private lateinit var errorMessage: String
 
             @BeforeEach
-            void flush() throws IOException {
-                stream = new ByteArrayOutputStream();
-                logMessage = "Testing log flushing. Random suffix: " + randomString();
-                logger().info(logMessage);
-                errorMessage = "Testing error flushing. Random suffix: " + randomString();
-                logger().severe(errorMessage);
-                tap.flushTo(stream);
+            @Throws(IOException::class)
+            fun flush() {
+                stream = ByteArrayOutputStream()
+                logMessage = "Testing log flushing. Random suffix: " + randomString()
+                logger.info(logMessage)
+                errorMessage = "Testing error flushing. Random suffix: " + randomString()
+                logger.severe(errorMessage)
+                tap.flushTo(stream)
             }
 
             @Test
-            @DisplayName("accumulated output")
-            void ofRegularLogs() {
-                var fo = flushedOutput();
-                assertThat(fo).contains(logMessage);
+            fun `accumulated output`() {
+                val fo = flushedOutput()
+                fo shouldContain logMessage
             }
 
             @Test
-            @DisplayName("accumulated error output")
-            void ofErrorLogs() {
-                var fo = flushedOutput();
-                assertThat(fo).contains(errorMessage);
+            fun `accumulated error output`() {
+                val fo = flushedOutput()
+                fo shouldContain errorMessage
             }
-            String flushedOutput() {
-                return stream.toString(Charset.defaultCharset());
-            }
+
+            private fun flushedOutput(): String = stream.toString(Charset.defaultCharset())
         }
-    }
-
-    private String name() {
-        return getClass().getName();
-    }
-
-    private Logger logger() {
-        return Logger.getLogger(name());
     }
 }
