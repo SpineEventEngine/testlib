@@ -42,7 +42,7 @@ internal class MutingSpec {
 
     @Test
     fun `mute logging for all loggers with the given name`() {
-        var consoleOutput = ""
+        var consoleOutput: String
         val loggerNames = classes.map { it.qualifiedName!! }
 
         // Check that loggers do produce console output when not muted.
