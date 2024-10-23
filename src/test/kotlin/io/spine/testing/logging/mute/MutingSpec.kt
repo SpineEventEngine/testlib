@@ -27,10 +27,11 @@
 package io.spine.testing.logging.mute
 
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain
 import io.spine.logging.LoggingFactory
-import io.spine.testing.TestValues
 import io.spine.logging.testing.tapConsole
+import io.spine.testing.TestValues
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -52,6 +53,7 @@ internal class MutingSpec {
                 it.atError().log { visibleMessage }
             }
         }
+        consoleOutput shouldContain visibleMessage
         consoleOutput.occurrencesOf(visibleMessage) shouldBe loggers.size
 
         // Check that the console does not have logging output when muted.
