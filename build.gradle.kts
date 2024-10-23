@@ -85,6 +85,11 @@ dependencies {
         implementation(io.spine.internal.dependency.Flogger.lib)?.because(reason)
         runtimeOnly(io.spine.internal.dependency.Flogger.Runtime.systemBackend)?.because(reason)
     }
+
+    testImplementation(Spine.Logging.testlibJvm)
+    testImplementation(Spine.Logging.stdContext)?.because(
+        "We need logging context support in logging tests."
+    )
 }
 
 spinePublishing {
