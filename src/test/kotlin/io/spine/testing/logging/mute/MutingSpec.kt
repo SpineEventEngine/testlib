@@ -30,8 +30,10 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain
 import io.spine.logging.LoggingFactory
+import io.spine.logging.testing.ConsoleTap
 import io.spine.logging.testing.tapConsole
 import io.spine.testing.TestValues
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -40,6 +42,14 @@ internal class MutingSpec {
 
     private val classes = listOf(TestValues::class, MutingSpec::class)
     private val loggers = classes.map { LoggingFactory.loggerFor(it) }
+
+    companion object {
+        @BeforeAll
+        @JvmStatic
+        fun installTap() {
+            ConsoleTap.install()
+        }
+    }
 
     @Test
     fun `mute logging for all loggers with the given name`() {

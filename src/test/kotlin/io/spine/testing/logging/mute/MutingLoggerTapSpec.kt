@@ -28,6 +28,7 @@ package io.spine.testing.logging.mute
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain
+import io.spine.logging.testing.ConsoleTap
 import io.spine.logging.testing.tapConsole
 import io.spine.testing.TestValues.randomString
 import java.io.ByteArrayOutputStream
@@ -35,6 +36,7 @@ import java.io.IOException
 import java.nio.charset.Charset
 import java.util.logging.Logger
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -47,6 +49,14 @@ internal class MutingLoggerTapSpec {
     private val logger: Logger = Logger.getLogger(name)
 
     private lateinit var tap: MutingLoggerTap
+
+    companion object {
+        @BeforeAll
+        @JvmStatic
+        fun installTap() {
+            ConsoleTap.install()
+        }
+    }
 
     @BeforeEach
     fun createTap() {
