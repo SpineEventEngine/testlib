@@ -29,8 +29,10 @@ package io.spine.testing.logging.mute;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.flogger.FluentLogger;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import io.spine.logging.testing.ConsoleTap;
 import io.spine.testing.TestValues;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -58,6 +60,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class MuteLoggingExtensionTest extends SystemOutputTest {
 
     private MuteLoggingExtension extension;
+
+    @BeforeAll
+    static void tapConsole() {
+        ConsoleTap.INSTANCE.install();
+    }
 
     @BeforeEach
     void setUp() {
