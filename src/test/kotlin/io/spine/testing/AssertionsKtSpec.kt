@@ -37,7 +37,7 @@ import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.io.TempDir
 
-@DisplayName("`MoreAssertions` (`Assertions.kt`) should")
+@DisplayName("`MoreAssertions` should")
 internal class AssertionsKtSpec {
 
     companion object {

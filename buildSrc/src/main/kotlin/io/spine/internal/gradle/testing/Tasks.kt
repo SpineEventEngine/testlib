@@ -1,5 +1,5 @@
 /*
- * Copyright 2022, TeamDev. All rights reserved.
+ * Copyright 2023, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,6 +47,9 @@ import org.gradle.kotlin.dsl.register
 fun TaskContainer.registerTestTasks() {
     withType(Test::class.java).configureEach {
         filter {
+            // There could be cases with no matching tests. E.g. tests could be based on Kotest,
+            // which has custom task types and names.
+            isFailOnNoMatchingTests = false
             includeTestsMatching("*Test")
             includeTestsMatching("*Spec")
         }
@@ -72,7 +75,7 @@ private const val SLOW_TAG = "slow"
 /**
  * Executes JUnit tests filtering out the ones tagged as `slow`.
  */
-private open class FastTest : Test() {
+private abstract class FastTest : Test() {
     init {
         description = "Executes all JUnit tests but the ones tagged as `slow`."
         group = "Verification"
@@ -86,11 +89,12 @@ private open class FastTest : Test() {
 /**
  * Executes JUnit tests tagged as `slow`.
  */
-private open class SlowTest : Test() {
+private abstract class SlowTest : Test() {
     init {
         description = "Executes JUnit tests tagged as `slow`."
         group = "Verification"
-
+        // No slow tests -- no problem.
+        filter.isFailOnNoMatchingTests = false
         this.useJUnitPlatform {
             includeTags(SLOW_TAG)
         }

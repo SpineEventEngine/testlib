@@ -1,5 +1,5 @@
 /*
- * Copyright 2022, TeamDev. All rights reserved.
+ * Copyright 2024, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+@file:Suppress("TooManyFunctions")
+
 package io.spine.internal.gradle.publish
 
+import dokkaJavaJar
+import dokkaKotlinJar
 import io.spine.internal.gradle.Repository
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.plugins.MavenPublishPlugin
@@ -140,7 +144,7 @@ open class SpinePublishing(private val project: Project) {
     /**
      * Set of modules to be published.
      *
-     * Both module's name or path can be used.
+     * Both the module's name or path can be used.
      *
      * Use this property if the extension is configured from a root project's build file.
      *
@@ -149,6 +153,22 @@ open class SpinePublishing(private val project: Project) {
      * Empty by default.
      */
     var modules: Set<String> = emptySet()
+
+    /**
+     * Controls whether the published module needs standard publications.
+     *
+     * If `true`, the module should configure publications on its own.
+     * Otherwise, the extension will configure standard [ones][StandardJavaPublicationHandler].
+     *
+     * This property is analogue of [modulesWithCustomPublishing] for projects,
+     * for which [spinePublishing] is configured individually.
+     *
+     * Setting of this property and having a non-empty [modules] will lead
+     * to an exception.
+     *
+     * Default value is `false`.
+     */
+    var customPublishing = false
 
     /**
      * Set of modules that have custom publications and do not need standard ones.
@@ -178,7 +198,7 @@ open class SpinePublishing(private val project: Project) {
     /**
      * A prefix to be added before the name of each artifact.
      *
-     * Default value is "spine-".
+     * The default value is "spine-".
      */
     var artifactPrefix: String = "spine-"
 
@@ -186,7 +206,7 @@ open class SpinePublishing(private val project: Project) {
      * Allows disabling publishing of [protoJar] artifact, containing all Proto sources
      * from `sourceSets.main.proto`.
      *
-     * Here's an example of how to disable it for some of published modules:
+     * Here's an example of how to disable it for some of the published modules:
      *
      * ```
      * spinePublishing {
@@ -212,8 +232,8 @@ open class SpinePublishing(private val project: Project) {
      * }
      * ```
      *
-     * The resulting artifact is available under "proto" classifier. I.e., in Gradle 7+, one could
-     * depend on it like this:
+     * The resulting artifact is available under "proto" classifier.
+     * For example, in Gradle 7+, one could depend on it like this:
      *
      * ```
      * implementation("io.spine:spine-client:$version@proto")
@@ -225,7 +245,7 @@ open class SpinePublishing(private val project: Project) {
      * Allows enabling publishing of [testJar] artifact, containing compilation output
      * of "test" source set.
      *
-     * Here's an example of how to enable it for some of published modules:
+     * Here's an example of how to enable it for some of the published modules:
      *
      * ```
      * spinePublishing {
@@ -297,7 +317,8 @@ open class SpinePublishing(private val project: Project) {
     internal fun configured() {
         ensureProtoJarExclusionsArePublished()
         ensureTestJarInclusionsArePublished()
-        ensuresModulesNotDuplicated()
+        ensureModulesNotDuplicated()
+        ensureCustomPublishingNotMisused()
 
         val projectsToPublish = projectsToPublish()
         projectsToPublish.forEach { project ->
@@ -318,10 +339,14 @@ open class SpinePublishing(private val project: Project) {
      *
      * @see modules
      */
-    private fun projectsToPublish(): Collection<Project> =
-        modules.union(modulesWithCustomPublishing)
+    private fun projectsToPublish(): Collection<Project> {
+        if (project.subprojects.isEmpty()) {
+            return setOf(project)
+        }
+        return modules.union(modulesWithCustomPublishing)
             .map { name -> project.project(name) }
             .ifEmpty { setOf(project) }
+    }
 
     /**
      * Sets up `maven-publish` plugin for the given project.
@@ -346,7 +371,7 @@ open class SpinePublishing(private val project: Project) {
      * we configure publishing for it.
      */
     private fun Project.setUpPublishing(jarFlags: JarFlags) {
-        val customPublishing = modulesWithCustomPublishing.contains(name)
+        val customPublishing = modulesWithCustomPublishing.contains(name) || customPublishing
         val handler = if (customPublishing) {
             CustomPublicationHandler(project, destinations)
         } else {
@@ -403,7 +428,7 @@ open class SpinePublishing(private val project: Project) {
      * We allow configuration of publishing from two places - a root project and module itself.
      * Here we verify that publishing of a module is not configured in both places simultaneously.
      */
-    private fun ensuresModulesNotDuplicated() {
+    private fun ensureModulesNotDuplicated() {
         val rootProject = project.rootProject
         if (rootProject == project) {
             return
@@ -417,6 +442,13 @@ open class SpinePublishing(private val project: Project) {
                     "Publishing of `$thisProject` module is already configured in a root project!"
                 )
             }
+        }
+    }
+
+    private fun ensureCustomPublishingNotMisused() {
+        if (modules.isNotEmpty() && customPublishing) {
+            error("`customPublishing` property can be set only if `spinePublishing` extension " +
+                    "is open in an individual module, so `modules` property should be empty.")
         }
     }
 }

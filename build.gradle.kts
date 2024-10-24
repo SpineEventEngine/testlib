@@ -1,11 +1,11 @@
 /*
- * Copyright 2023, TeamDev. All rights reserved.
+ * Copyright 2024, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -25,11 +25,11 @@
  */
 
 import io.spine.internal.dependency.CheckerFramework
-import io.spine.internal.dependency.Flogger
 import io.spine.internal.dependency.Guava
 import io.spine.internal.dependency.JUnit
 import io.spine.internal.dependency.Kotest
 import io.spine.internal.dependency.Protobuf
+import io.spine.internal.dependency.Spine
 import io.spine.internal.dependency.Truth
 import io.spine.internal.gradle.checkstyle.CheckStyleConfig
 import io.spine.internal.gradle.javadoc.JavadocConfig
@@ -64,6 +64,8 @@ detekt {
 repositories.standardToSpineSdk()
 
 dependencies {
+    compileOnly(CheckerFramework.annotations)
+
     /*
         Expose tools we use as transitive dependencies to simplify dependency
         management in projects that use Spine Testlib.
@@ -75,14 +77,24 @@ dependencies {
             + Kotest.assertions).forEach {
         api(it)
     }
-    implementation(Flogger.lib)
-    compileOnly(CheckerFramework.annotations)
+    implementation(Spine.Logging.lib)
+
+    @Suppress("DEPRECATION")
+    run {
+        val reason = "io.spine.testing.logging.LogTruth"
+        implementation(io.spine.internal.dependency.Flogger.lib)?.because(reason)
+        runtimeOnly(io.spine.internal.dependency.Flogger.Runtime.systemBackend)?.because(reason)
+    }
+
+    testImplementation(Spine.Logging.testlibJvm)
+    testImplementation(Spine.Logging.stdContext)?.because(
+        "We need logging context support in logging tests."
+    )
 }
 
 spinePublishing {
     destinations = with(PublishingRepos) {
         setOf(
-            cloudRepo,
             cloudArtifactRegistry,
             gitHub("testlib")
         )

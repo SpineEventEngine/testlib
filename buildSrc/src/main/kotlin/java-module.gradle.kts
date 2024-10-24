@@ -1,11 +1,11 @@
 /*
- * Copyright 2023, TeamDev. All rights reserved.
+ * Copyright 2024, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -24,14 +24,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import io.spine.internal.dependency.Asm
 import io.spine.internal.dependency.CheckerFramework
 import io.spine.internal.dependency.Dokka
 import io.spine.internal.dependency.ErrorProne
-import io.spine.internal.dependency.Flogger
 import io.spine.internal.dependency.Guava
 import io.spine.internal.dependency.JUnit
 import io.spine.internal.dependency.JavaX
+import io.spine.internal.dependency.Kotlin
 import io.spine.internal.dependency.Protobuf
+import io.spine.internal.dependency.Spine
 import io.spine.internal.gradle.checkstyle.CheckStyleConfig
 import io.spine.internal.gradle.excludeProtobufLite
 import io.spine.internal.gradle.forceVersions
@@ -106,8 +108,6 @@ fun Module.addDependencies() = dependencies {
     testImplementation(JUnit.runner)
     testImplementation(JUnit.pioneer)
     JUnit.api.forEach { testImplementation(it) }
-
-    runtimeOnly(Flogger.Runtime.systemBackend)
 }
 
 fun Module.forceConfigurations() {
@@ -116,10 +116,16 @@ fun Module.forceConfigurations() {
         excludeProtobufLite()
         all {
             resolutionStrategy {
+                @Suppress("DEPRECATION") // `Kotlin.stdLibJdk7` is still a transitive dependency.
                 force(
+                    Kotlin.stdLibJdk7,
+                    Kotlin.jetbrainsAnnotations,
                     JUnit.bom,
                     JUnit.runner,
-                    Dokka.BasePlugin.lib
+                    Dokka.BasePlugin.lib,
+                    Asm.lib,
+                    Spine.Logging.lib,
+                    Spine.Logging.libJvm,
                 )
             }
         }

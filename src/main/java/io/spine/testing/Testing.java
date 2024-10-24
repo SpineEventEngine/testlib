@@ -26,8 +26,9 @@
 
 package io.spine.testing;
 
-import com.google.common.flogger.FluentLogger;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
+import io.spine.logging.Logger;
+import io.spine.logging.LoggingFactory;
 import kotlin.io.FilesKt;
 
 import java.io.IOException;
@@ -48,14 +49,14 @@ import static org.junit.jupiter.api.Assertions.fail;
  */
 public final class Testing {
 
-    private static final FluentLogger logger = FluentLogger.forEnclosingClass();
+    private static final Logger<?> logger = LoggingFactory.forEnclosingClass();
 
     /** Prevent instantiation of this utility class. */
     private Testing() {
     }
 
     /**
-     * Calls the passed constructor include it into the coverage.
+     * Calls the given constructor to include it in the test coverage.
      *
      * <p>Some of the coding conventions may encourage throwing {@link AssertionError}
      * to prevent the instantiation of the target class, if it is designed as a utility class.
@@ -169,7 +170,7 @@ public final class Testing {
         var success = FilesKt.deleteRecursively(directory.toFile());
         if (!success) {
             logger.atWarning()
-                  .log("Unable to delete the directory `%s`.", directory);
+                  .log(() -> format("Unable to delete the directory `%s`.", directory));
         }
         return success;
     }

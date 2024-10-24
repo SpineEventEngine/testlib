@@ -1,5 +1,5 @@
 /*
- * Copyright 2022, TeamDev. All rights reserved.
+ * Copyright 2023, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ package io.spine.internal.gradle.publish
 
 import io.spine.internal.gradle.Credentials
 import io.spine.internal.gradle.Repository
+import io.spine.internal.gradle.buildDirectory
 import net.lingala.zip4j.ZipFile
 import org.gradle.api.Project
 
@@ -90,7 +91,7 @@ private fun Project.readGitHubToken(): String {
  * use such a workaround.
  */
 private fun Project.readTokenFromArchive(): String {
-    val targetDir = "${buildDir}/token"
+    val targetDir = "$buildDirectory/token"
     file(targetDir).mkdirs()
     val fileToUnzip = "${rootDir}/buildSrc/aus.weis"
 
