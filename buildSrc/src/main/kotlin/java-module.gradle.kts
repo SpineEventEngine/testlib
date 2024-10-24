@@ -125,6 +125,7 @@ fun Module.forceConfigurations() {
                     Dokka.BasePlugin.lib,
                     Asm.lib,
                     Spine.Logging.lib,
+                    Spine.Logging.libJvm,
                 )
             }
         }
