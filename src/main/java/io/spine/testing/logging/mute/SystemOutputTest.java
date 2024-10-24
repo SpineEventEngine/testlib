@@ -36,8 +36,14 @@ import java.nio.charset.Charset;
 /**
  * Abstract base for tests that need to substitute {@link System#out} and {@link System#err}
  * for analyzing logging output.
+ *
+ * @deprecated Please use {@code tapConsole} from {@link io.spine.logging.testing} instead.
  */
-@SuppressWarnings("UseOfSystemOutOrSystemErr") // Test std I/O substitution.
+@SuppressWarnings({
+        "UseOfSystemOutOrSystemErr" /* Test std I/O substitution. */,
+        "AbstractClassNeverImplemented" /* ... because of the deprecation. */
+})
+@Deprecated
 public abstract class SystemOutputTest {
 
     private static final PrintStream originalOut = System.out;

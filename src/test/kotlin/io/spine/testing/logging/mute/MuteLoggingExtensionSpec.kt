@@ -1,11 +1,11 @@
 /*
- * Copyright 2023, TeamDev. All rights reserved.
+ * Copyright 2024, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -23,227 +23,155 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package io.spine.testing.logging.mute
 
-package io.spine.testing.logging.mute;
+import com.google.common.collect.ImmutableSet
+import com.google.errorprone.annotations.CanIgnoreReturnValue
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
+import io.spine.logging.Logger
+import io.spine.logging.LoggingFactory
+import io.spine.logging.testing.ConsoleTap.install
+import io.spine.logging.testing.tapConsole
+import io.spine.testing.TestValues.randomString
+import java.lang.reflect.AnnotatedElement
+import java.lang.reflect.Method
+import java.lang.reflect.Modifier
+import java.util.*
+import java.util.function.Function
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.extension.ExecutableInvoker
+import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.jupiter.api.extension.TestInstances
+import org.junit.jupiter.api.parallel.ExecutionMode
 
-import com.google.common.collect.ImmutableSet;
-import com.google.common.flogger.FluentLogger;
-import com.google.errorprone.annotations.CanIgnoreReturnValue;
-import io.spine.logging.testing.ConsoleTap;
-import io.spine.testing.TestValues;
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.extension.ExecutableInvoker;
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.api.extension.TestInstances;
-import org.junit.jupiter.api.parallel.ExecutionMode;
-
-import java.io.IOException;
-import java.lang.reflect.AnnotatedElement;
-import java.lang.reflect.Method;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Function;
-
-import static com.google.common.truth.Truth.assertThat;
-import static java.lang.reflect.Modifier.isPublic;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-@SuppressWarnings("UseOfSystemOutOrSystemErr") // Test std I/O overloading.
 @DisplayName("`MuteLogging` JUnit Extension should")
-class MuteLoggingExtensionTest extends SystemOutputTest {
+internal class MuteLoggingExtensionSpec {
 
-    private MuteLoggingExtension extension;
-
-    @BeforeAll
-    static void tapConsole() {
-        ConsoleTap.INSTANCE.install();
-    }
+    private lateinit var extension: MuteLoggingExtension
 
     @BeforeEach
-    void setUp() {
-        out().reset();
-        err().reset();
-        extension = new MuteLoggingExtension();
+    fun setUp() {
+        extension = MuteLoggingExtension()
     }
 
     @Test
-    @DisplayName("have public parameter-less constructor")
-    void ctor() throws NoSuchMethodException {
-        var constructor = MuteLoggingExtension.class.getConstructor();
-        var modifiers = constructor.getModifiers();
-        assertTrue(isPublic(modifiers));
+    fun `have public parameter-less constructor`() {
+        val constructor = MuteLoggingExtension::class.java.getConstructor()
+        val modifiers = constructor.modifiers
+        Modifier.isPublic(modifiers) shouldBe true
     }
 
     @Test
-    @DisplayName("print the standard output into std err stream if the test fails")
-    void printOutputOnException() throws IOException {
-        extension.beforeEach(successfulContext());
+    fun `print the standard output into std err stream if the test fails`() {
+        extension.beforeEach(successfulContext())
 
-        var stub = new LoggingStub();
-        var errorMessage = stub.logError();
+        var errorMessage = ""
+        val output = tapConsole {
+            val stub = LoggingStub()
+            errorMessage = stub.logError()
 
-        extension.afterEach(failedContext());
+            extension.afterEach(failedContext())
+        }
 
-        System.out.flush();
-        System.err.flush();
-
-        assertEquals(0, out().size());
-        var actualErrorOutput = errorOutput();
-        assertThat(actualErrorOutput).contains(errorMessage);
+        output shouldContain errorMessage
     }
 
     @Test
-    @DisplayName("mute Spine Logging API")
-    void muteSpineLogging() throws IOException {
-        extension.beforeEach(successfulContext());
+    fun `mute Spine Logging API`() {
+        val console = tapConsole {
+            extension.beforeEach(successfulContext())
 
-        var stub = new LoggingStub();
-        stub.logWarning();
+            val stub = LoggingStub()
+            stub.logWarning()
 
-        extension.afterEach(successfulContext());
+            extension.afterEach(successfulContext())
+        }
 
-        assertEquals(0, out().size());
-        assertEquals(0, err().size());
+        console shouldBe ""
     }
 
-    private static ExtensionContext successfulContext() {
-        return new StubContext(null);
-    }
+    companion object {
 
-    private static ExtensionContext failedContext() {
-        return new StubContext(new TestThrowable());
-    }
-
-    private static class TestThrowable extends Throwable {
-        private static final long serialVersionUID = 0L;
-    }
-
-    /**
-     * Stub implementation of {@code ExtensionContext} which returns the passed {@code Throwable}.
-     */
-    @SuppressWarnings("ReturnOfNull")
-    private static final class StubContext implements ExtensionContext {
-
-        private final Throwable executionThrowable;
-
-        private StubContext(@Nullable Throwable throwable) {
-            this.executionThrowable = throwable;
+        @BeforeAll
+        @JvmStatic
+        fun installConsoleTap() {
+            install()
         }
 
-        @Override
-        public Optional<ExtensionContext> getParent() {
-            return Optional.empty();
+        private fun successfulContext(): ExtensionContext {
+            return StubContext(null)
         }
 
-        @Override
-        public ExtensionContext getRoot() {
-            return null;
-        }
-
-        @Override
-        public String getUniqueId() {
-            return null;
-        }
-
-        @Override
-        public String getDisplayName() {
-            return null;
-        }
-
-        @Override
-        public Set<String> getTags() {
-            return ImmutableSet.of();
-        }
-
-        @Override
-        public Optional<AnnotatedElement> getElement() {
-            return Optional.empty();
-        }
-
-        @Override
-        public Optional<Class<?>> getTestClass() {
-            return Optional.empty();
-        }
-
-        @Override
-        public Optional<TestInstance.Lifecycle> getTestInstanceLifecycle() {
-            return Optional.empty();
-        }
-
-        @Override
-        public Optional<Object> getTestInstance() {
-            return Optional.empty();
-        }
-
-        @Override
-        public Optional<TestInstances> getTestInstances() {
-            return Optional.empty();
-        }
-
-        @Override
-        public Optional<Method> getTestMethod() {
-            return Optional.empty();
-        }
-
-        @Override
-        public Optional<Throwable> getExecutionException() {
-            return Optional.ofNullable(executionThrowable);
-        }
-
-        @Override
-        public Optional<String> getConfigurationParameter(String key) {
-            return Optional.empty();
-        }
-
-        @Override
-        public <T> Optional<T> getConfigurationParameter(String key,
-                                                         Function<String, T> transformer) {
-            return Optional.empty();
-        }
-
-        @Override
-        public void publishReportEntry(Map<String, String> map) {
-        }
-
-        @Override
-        public Store getStore(Namespace namespace) {
-            return null;
-        }
-
-        @Override
-        public ExecutionMode getExecutionMode() {
-            return ExecutionMode.SAME_THREAD;
-        }
-
-        @Override
-        public ExecutableInvoker getExecutableInvoker() {
-            return null;
+        private fun failedContext(): ExtensionContext {
+            return StubContext(TestThrowable())
         }
     }
+}
 
-    private static final class LoggingStub {
-
-        private static final FluentLogger logger = FluentLogger.forEnclosingClass();
-
-        @CanIgnoreReturnValue
-        String logWarning() {
-            var warningMessage = "Warning: " + TestValues.randomString();
-            logger.atWarning().log(warningMessage);
-            return warningMessage;
-        }
-
-        @CanIgnoreReturnValue
-        String logError() {
-            var errorMessage = "Error: " + TestValues.randomString();
-            logger.atSevere().log(errorMessage);
-            return errorMessage;
-        }
+private class TestThrowable : Throwable() {
+    companion object {
+        private const val serialVersionUID: Long = 2796411543401665435L
     }
+}
+
+/**
+ * A stub class which performs logging operations using Spine Logging API.
+ */
+private class LoggingStub {
+
+    @CanIgnoreReturnValue
+    fun logWarning(): String {
+        val warningMessage = "Warning: " + randomString()
+        logger.atWarning().log { warningMessage }
+        return warningMessage
+    }
+
+    @CanIgnoreReturnValue
+    fun logError(): String {
+        val errorMessage = "Error: " + randomString()
+        logger.atError().log { errorMessage }
+        return errorMessage
+    }
+
+    companion object {
+        private val logger: Logger<*> = LoggingFactory.forEnclosingClass()
+    }
+}
+
+/**
+ * Stub implementation of `ExtensionContext` which returns the given `Throwable`.
+ */
+private class StubContext(private val executionThrowable: Throwable?) : ExtensionContext {
+
+    override fun getParent(): Optional<ExtensionContext> = Optional.empty()
+    override fun getRoot(): ExtensionContext? = null
+    override fun getUniqueId(): String? = null
+    override fun getDisplayName(): String? = null
+    override fun getTags(): Set<String> = ImmutableSet.of()
+    override fun getElement(): Optional<AnnotatedElement> = Optional.empty()
+    override fun getTestClass(): Optional<Class<*>> = Optional.empty()
+    override fun getTestInstanceLifecycle(): Optional<TestInstance.Lifecycle> = Optional.empty()
+    override fun getTestInstance(): Optional<Any> = Optional.empty()
+    override fun getTestInstances(): Optional<TestInstances> = Optional.empty()
+    override fun getTestMethod(): Optional<Method> = Optional.empty()
+
+    override fun getExecutionException(): Optional<Throwable> =
+        Optional.ofNullable(executionThrowable)
+
+    override fun getConfigurationParameter(key: String): Optional<String> = Optional.empty()
+
+    override fun <T : Any> getConfigurationParameter(
+        key: String,
+        transformer: Function<String, T>
+    ): Optional<T> = Optional.empty()
+
+    override fun publishReportEntry(map: Map<String, String>) = Unit
+    override fun getStore(namespace: ExtensionContext.Namespace): ExtensionContext.Store? = null
+    override fun getExecutionMode(): ExecutionMode = ExecutionMode.SAME_THREAD
+    override fun getExecutableInvoker(): ExecutableInvoker? = null
 }

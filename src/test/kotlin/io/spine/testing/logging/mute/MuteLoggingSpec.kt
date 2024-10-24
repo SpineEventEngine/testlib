@@ -1,11 +1,11 @@
 /*
- * Copyright 2022, TeamDev. All rights reserved.
+ * Copyright 2024, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -23,26 +23,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package io.spine.testing.logging.mute
 
-package io.spine.testing.logging.mute;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-
-import static com.google.common.truth.Truth.assertThat;
+import io.kotest.matchers.collections.shouldContainExactly
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 
 @DisplayName("`@MuteLogging` should")
-class MuteLoggingTest {
+internal class MuteLoggingSpec {
 
     @Test
-    @DisplayName("be marked as an extension")
-    void annotated() {
-        var annotation = MuteLogging.class;
-        var extendsWith = annotation.getAnnotation(ExtendWith.class);
-        var extensions = extendsWith.value();
-        var assertExtensions = assertThat(extensions);
-        assertExtensions.hasLength(1);
-        assertExtensions.asList().contains(MuteLoggingExtension.class);
+    fun `be marked as an extension`() {
+        val annotation = MuteLogging::class.java
+        val extendsWith = annotation.getAnnotation(ExtendWith::class.java)
+        val extensions = extendsWith.value
+
+        extensions.asList() shouldContainExactly listOf(MuteLoggingExtension::class)
     }
 }
