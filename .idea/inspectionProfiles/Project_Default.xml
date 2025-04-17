@@ -258,6 +258,18 @@
       <option name="m_limit" value="20" />
     </inspection_tool>
     <inspection_tool class="FieldMayBeStatic" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="FieldNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
+      <extension name="ConstantNamingConvention" enabled="false">
+        <option name="m_regex" value="[A-Z_\d]*" />
+        <option name="m_minLength" value="5" />
+        <option name="m_maxLength" value="32" />
+      </extension>
+      <extension name="InstanceVariableNamingConvention" enabled="true">
+        <option name="m_regex" value="[a-z][A-Za-z\d]*" />
+        <option name="m_minLength" value="2" />
+        <option name="m_maxLength" value="32" />
+      </extension>
+    </inspection_tool>
     <inspection_tool class="FloatingPointEquality" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ForLoopReplaceableByWhile" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="m_ignoreLoopsWithoutConditions" value="false" />
@@ -578,7 +590,6 @@
     </inspection_tool>
     <inspection_tool class="NonSerializableObjectBoundToHttpSession" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="NonSerializableObjectPassedToObjectStream" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="NonSerializableWithSerialVersionUIDField" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="NonSerializableWithSerializationMethods" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="NonShortCircuitBoolean" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="NonStaticFinalLogger" enabled="true" level="WARNING" enabled_by_default="true">
@@ -623,6 +634,9 @@
     </inspection_tool>
     <inspection_tool class="OctalAndDecimalIntegersMixed" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="OnDemandImport" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="OptionalOfNullableMisuse" enabled="true" level="TYPO" enabled_by_default="true">
+      <scope name="Production" level="WARNING" enabled="true" />
+    </inspection_tool>
     <inspection_tool class="OverloadedMethodsWithSameNumberOfParameters" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoreInconvertibleTypes" value="true" />
     </inspection_tool>
@@ -690,7 +704,6 @@
       <option name="ignoreSerializable" value="false" />
       <option name="ignoreCloneable" value="false" />
     </inspection_tool>
-    <inspection_tool class="RedundantMethodOverride" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="ResultOfObjectAllocationIgnored" enabled="true" level="WARNING" enabled_by_default="true">
       <scope name="Tests" level="WARNING" enabled="false" />
     </inspection_tool>
@@ -711,7 +724,6 @@
     <inspection_tool class="SamePackageImport" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SameParameterValue" enabled="true" level="TYPO" enabled_by_default="true" />
     <inspection_tool class="SerialPersistentFieldsWithWrongSignature" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="SerialVersionUIDNotStaticFinal" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SerializableHasSerialVersionUIDField" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="SerializableInnerClassHasSerialVersionUIDField" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoreAnonymousInnerClasses" value="false" />
