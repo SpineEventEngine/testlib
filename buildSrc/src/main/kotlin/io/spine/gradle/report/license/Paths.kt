@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,18 +24,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.internal.dependency
+package io.spine.gradle.report.license
 
 /**
- * A [high performance](https://github.com/ben-manes/caffeine/wiki/Benchmarks),
- * [near optimal](https://github.com/ben-manes/caffeine/wiki/Efficiency) caching library.
- *
- * This library is a transitive dependency for us via ErrorProne.
- *
- * @see <a href="https://github.com/ben-manes/caffeine">Caffeine at GitHub</a>
+ * Filesystem paths used by [LicenseReporter].
  */
-@Suppress("unused")
-object Caffeine {
-    private const val version = "3.0.5"
-    const val lib = "com.github.ben-manes.caffeine:caffeine:$version"
+internal object Paths {
+
+    /**
+     * The output filename of the license report.
+     *
+     * The file with this name is placed to the root folder of the root Gradle project —
+     * as the result of the [LicenseReporter] work.
+     *
+     * Its contents describe the licensing information for each of the Java dependencies
+     * which are referenced by Gradle projects in the repository.
+     */
+    internal const val outputFilename = "dependencies.md"
+
+    /**
+     * The path to a directory, to which a per-project report is generated.
+     */
+    internal const val relativePath = "reports/dependency-license/dependency"
 }
