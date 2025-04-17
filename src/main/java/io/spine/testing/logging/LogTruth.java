@@ -30,7 +30,7 @@ import com.google.common.flogger.FluentLogger;
 import com.google.common.truth.Subject;
 import com.google.errorprone.annotations.InlineMe;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
