@@ -47,11 +47,14 @@ plugins {
  * Please do not apply this script plugin in the `plugins {}` block because `jacocoTestReport`
  * task is not yet available at this stage.
  */
+@Suppress("unused")
 private val about = ""
 
 /**
- * Configure Jacoco task with custom input from this KMM project.
+ * Configure the Jacoco task with custom input a KMM project
+ * to which this convention plugin is applied.
  */
+@Suppress("unused")
 val jacocoTestReport: JacocoReport by tasks.getting(JacocoReport::class) {
     val buildDir = project.layout.buildDirectory.get().asFile.absolutePath
     val classFiles = File("${buildDir}/classes/kotlin/jvm/")
