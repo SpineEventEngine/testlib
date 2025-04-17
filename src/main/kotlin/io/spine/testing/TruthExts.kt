@@ -1,11 +1,11 @@
 /*
- * Copyright 2022, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -24,6 +24,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+@file:JvmName("Truths") /* Yeah, the truth should be one,
+    but we have the convention to give `JvmName`s for extension files
+    ending with `Exts.kt` with the plural for the receiver type. */
+
 package io.spine.testing
 
 import com.google.common.truth.IterableSubject
@@ -32,7 +36,6 @@ import com.google.common.truth.StringSubject
 import com.google.common.truth.StringSubject.CaseInsensitiveStringComparison
 import com.google.common.truth.Subject
 import com.google.common.truth.Truth
-import com.google.common.truth.Truth8
 import com.google.common.truth.extensions.proto.FieldScope
 import com.google.common.truth.extensions.proto.ProtoFluentAssertion
 import com.google.common.truth.extensions.proto.ProtoSubject
@@ -60,7 +63,7 @@ import java.util.*
 private const val ABOUT = ""
 
 /**
- * Allows to write:
+ * Allows writing:
  *
  * ```kotlin
  *  assertThat("foo bar") {
@@ -74,7 +77,7 @@ public fun assertThat(string: String, assertions: StringSubject.() -> Unit) {
 }
 
 /**
- * Allows to write:
+ * Allows writing:
  *
  * ```kotlin
  * assertThat("foo bar").ignoringCase() {
@@ -88,7 +91,7 @@ public fun StringSubject.ignoringCase(assertions: CaseInsensitiveStringCompariso
 }
 
 /**
- * Allows to write:
+ * Allows writing:
  *
  * ```kotlin
  * assertThat(listOf(1, 2, 3) {
@@ -103,7 +106,7 @@ public fun <T> assertThat(iterable: Iterable<T>, assertions: IterableSubject.() 
 }
 
 /**
- * Allows to write:
+ * Allows writing:
  *
  * ```kotlin
  * assertThat(Optional.of("something") {
@@ -112,7 +115,7 @@ public fun <T> assertThat(iterable: Iterable<T>, assertions: IterableSubject.() 
  * ```
  */
 public fun <T> assertThat(optional: Optional<T>, assertions: OptionalSubject.() -> Unit) {
-    Truth8.assertThat(optional).run { assertions() }
+    Truth.assertThat(optional).run { assertions() }
 }
 
 /**
@@ -130,7 +133,7 @@ public fun <T : Message> assertThat(m: T, assertions: ProtoSubject.() -> Unit) {
 }
 
 /**
- * Allows to write:
+ * Allows writing:
  * ```kotlin
  * assertThat(object).isInstanceOf<Any>()
  * ```

@@ -1,11 +1,11 @@
 /*
- * Copyright 2022, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -24,6 +24,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+@file:JvmName("NullPointerTester")
+
 package io.spine.testing
 
 import com.google.common.testing.NullPointerTester
@@ -38,8 +40,8 @@ public fun nullPointerTester(block: NullPointerTester.() -> NullPointerTester): 
 }
 
 /**
- * Allows to use generic parameter of the function instead of `MyType::class.java` as the first
- * parameter type.
+ * Allows using generic parameter of the function instead of `MyType::class.java` as
+ * the first parameter type.
  */
 public inline fun <reified T : Any> NullPointerTester.setDefault(value: T): NullPointerTester =
     setDefault(T::class.java, value)
