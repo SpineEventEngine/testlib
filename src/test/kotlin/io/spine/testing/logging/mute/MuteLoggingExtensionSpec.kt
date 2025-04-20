@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,6 +37,7 @@ import io.spine.testing.TestValues.randomString
 import java.lang.reflect.AnnotatedElement
 import java.lang.reflect.Method
 import java.lang.reflect.Modifier
+import java.nio.file.Path
 import java.util.*
 import java.util.function.Function
 import org.junit.jupiter.api.BeforeAll
@@ -46,7 +47,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.extension.ExecutableInvoker
 import org.junit.jupiter.api.extension.ExtensionContext
+import org.junit.jupiter.api.extension.MediaType
 import org.junit.jupiter.api.extension.TestInstances
+import org.junit.jupiter.api.function.ThrowingConsumer
 import org.junit.jupiter.api.parallel.ExecutionMode
 
 @DisplayName("`MuteLogging` JUnit Extension should")
@@ -115,6 +118,7 @@ internal class MuteLoggingExtensionSpec {
 
 private class TestThrowable : Throwable() {
     companion object {
+        @Suppress("unused")
         private const val serialVersionUID: Long = 2796411543401665435L
     }
 }
@@ -155,6 +159,7 @@ private class StubContext(private val executionThrowable: Throwable?) : Extensio
     override fun getTags(): Set<String> = ImmutableSet.of()
     override fun getElement(): Optional<AnnotatedElement> = Optional.empty()
     override fun getTestClass(): Optional<Class<*>> = Optional.empty()
+    override fun getEnclosingTestClasses(): List<Class<*>?>? = emptyList()
     override fun getTestInstanceLifecycle(): Optional<TestInstance.Lifecycle> = Optional.empty()
     override fun getTestInstance(): Optional<Any> = Optional.empty()
     override fun getTestInstances(): Optional<TestInstances> = Optional.empty()
@@ -171,6 +176,17 @@ private class StubContext(private val executionThrowable: Throwable?) : Extensio
     ): Optional<T> = Optional.empty()
 
     override fun publishReportEntry(map: Map<String, String>) = Unit
+    override fun publishFile(
+        name: String?,
+        mediaType: MediaType?,
+        action: ThrowingConsumer<Path?>?
+    ) = Unit
+
+    override fun publishDirectory(
+        name: String?,
+        action: ThrowingConsumer<Path?>?
+    ) = Unit
+
     override fun getStore(namespace: ExtensionContext.Namespace): ExtensionContext.Store? = null
     override fun getExecutionMode(): ExecutionMode = ExecutionMode.SAME_THREAD
     override fun getExecutableInvoker(): ExecutableInvoker? = null

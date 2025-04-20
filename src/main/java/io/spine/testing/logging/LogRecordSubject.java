@@ -31,7 +31,7 @@ import com.google.common.truth.ObjectArraySubject;
 import com.google.common.truth.StringSubject;
 import com.google.common.truth.Subject;
 import com.google.common.truth.ThrowableSubject;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.logging.Level;
 import java.util.logging.LogRecord;

@@ -1,11 +1,11 @@
 /*
- * Copyright 2023, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -47,13 +47,16 @@ plugins {
  * Please do not apply this script plugin in the `plugins {}` block because `jacocoTestReport`
  * task is not yet available at this stage.
  */
+@Suppress("unused")
 private val about = ""
 
 /**
- * Configure Jacoco task with custom input from this KMM project.
+ * Configure the Jacoco task with custom input a KMM project
+ * to which this convention plugin is applied.
  */
+@Suppress("unused")
 val jacocoTestReport: JacocoReport by tasks.getting(JacocoReport::class) {
-
+    val buildDir = project.layout.buildDirectory.get().asFile.absolutePath
     val classFiles = File("${buildDir}/classes/kotlin/jvm/")
         .walkBottomUp()
         .toSet()

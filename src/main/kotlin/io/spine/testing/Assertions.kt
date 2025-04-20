@@ -1,11 +1,11 @@
 /*
- * Copyright 2022, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -44,11 +44,9 @@ private const val ABOUT = ""
 /**
  * Asserts that the given [file or directory][fileOrDir] exists.
  *
- * @param fileOrDir
- *         the file or directory to check.
- * @param message
- *         an optional error message. If not specified, the default message with the name
- *         of the file will be shown.
+ * @param fileOrDir The file or directory to check.
+ * @param message An optional error message. If not specified,
+ *   the default message with the name of the file will be shown.
  */
 @JvmOverloads
 public fun assertExists(fileOrDir: File, message: String? = null) {
@@ -58,11 +56,9 @@ public fun assertExists(fileOrDir: File, message: String? = null) {
 /**
  * Asserts that the given [file or directory][fileOrDir] exists.
  *
- * @param fileOrDir
- *         the file or directory to check.
- * @param message
- *         an optional error message. If not specified, the default message with the name
- *         of the file will be shown.
+ * @param fileOrDir The file or directory to check.
+ * @param message An optional error message.
+ *   If not specified, the default message with the name of the file will be shown.
  */
 @JvmOverloads
 public fun assertExists(fileOrDir: Path, message: String? = null) {
@@ -72,11 +68,9 @@ public fun assertExists(fileOrDir: Path, message: String? = null) {
 /**
  * Asserts that the given [file or directory][fileOrDir] does not exist.
  *
- * @param fileOrDir
- *         the file or directory to check.
- * @param message
- *         an optional error message. If not specified, the default message with the name
- *         of the file will be shown.
+ * @param fileOrDir The file or directory to check.
+ * @param message An optional error message.
+ *   If not specified, the default message with the name of the file will be shown.
  */
 @JvmOverloads
 public fun assertDoesNotExist(fileOrDir: File, message: String? = null) {
@@ -86,11 +80,9 @@ public fun assertDoesNotExist(fileOrDir: File, message: String? = null) {
 /**
  * Asserts that the given [file or directory][fileOrDir] does not exist.
  *
- * @param fileOrDir
- *         the file or directory to check.
- * @param message
- *         an optional error message. If not specified, the default message with the name
- *         of the file will be shown.
+ * @param fileOrDir The file or directory to check.
+ * @param message An optional error message.
+ *   If not specified, the default message with the name of the file will be shown.
  */
 @JvmOverloads
 public fun assertDoesNotExist(fileOrDir: Path, message: String? = null) {
@@ -100,13 +92,10 @@ public fun assertDoesNotExist(fileOrDir: Path, message: String? = null) {
 /**
  * Asserts file existence.
  *
- * @param fileOrDir
- *         an instance of [File] or [Path] to check.
- * @param message
- *         an optional error message. If not specified, the default message with the name
- *         of the file or directory will be shown.
- * @param not
- *         if `true` the object checks that the file does NOT exist.
+ * @param fileOrDir An instance of [File] or [Path] to check.
+ * @param message An optional error message.
+ *   If not specified, the default message with the name of the file or directory will be shown.
+ * @param not If `true` the object checks that the file does NOT exist.
  */
 private class FileExist(
     private val fileOrDir: Any,
