@@ -44,7 +44,7 @@ public final class DisplayNames {
 
     /**
      * A name for the test cases checking that class methods do not accept {@code null} for their
-     * non-{@linkplain javax.annotation.Nullable nullable} arguments.
+     * non-{@linkplain org.jspecify.annotations.Nullable nullable} arguments.
      */
     public static final String NOT_ACCEPT_NULLS =
             "not accept nulls for non-Nullable method arguments";

@@ -27,7 +27,7 @@
 package io.spine.testing.logging;
 
 import com.google.common.truth.StringSubject;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;

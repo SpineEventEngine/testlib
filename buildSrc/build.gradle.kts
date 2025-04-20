@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 /**
  * This script uses two declarations of the constant [licenseReportVersion] because
  * currently there is no way to define a constant _before_ a build script of `buildSrc`.
@@ -37,9 +39,6 @@ plugins {
 
     // https://github.com/jk1/Gradle-License-Report/releases
     id("com.github.jk1.dependency-license-report").version("2.7")
-
-    // https://github.com/johnrengelman/shadow/releases
-    id("com.github.johnrengelman.shadow").version("7.1.2")
 }
 
 repositories {
@@ -51,10 +50,10 @@ repositories {
 /**
  * The version of Jackson used by `buildSrc`.
  *
- * Please keep this value in sync with [io.spine.internal.dependency.Jackson.version].
+ * Please keep this value in sync with [io.spine.dependency.lib.Jackson.version].
  * It is not a requirement but would be good in terms of consistency.
  */
-val jacksonVersion = "2.15.3"
+val jacksonVersion = "2.18.3"
 
 /**
  * The version of Google Artifact Registry used by `buildSrc`.
@@ -71,67 +70,67 @@ val licenseReportVersion = "2.7"
 val grGitVersion = "4.1.1"
 
 /**
- * The version of the Kotlin Gradle plugin and Kotlin binaries used by the build process.
+ * The version of the Kotlin Gradle plugin used by the build process.
  *
- * This version may change from the [version of Kotlin][io.spine.internal.dependency.Kotlin.version]
+ * This version may change from the [version of Kotlin][io.spine.dependency.lib.Kotlin.version]
  * used by the project.
  */
-val kotlinVersion = "1.8.22"
+val kotlinVersion = "2.1.20"
 
 /**
  * The version of Guava used in `buildSrc`.
  *
- * Always use the same version as the one specified in [io.spine.internal.dependency.Guava].
+ * Always use the same version as the one specified in [io.spine.dependency.lib.Guava].
  * Otherwise, when testing Gradle plugins, clashes may occur.
  */
-val guavaVersion = "32.1.3-jre"
+val guavaVersion = "33.4.8-jre"
 
 /**
  * The version of ErrorProne Gradle plugin.
  *
- * Please keep in sync. with [io.spine.internal.dependency.ErrorProne.GradlePlugin.version].
+ * Please keep in sync. with [io.spine.dependency.build.ErrorProne.GradlePlugin.version].
  *
  * @see <a href="https://github.com/tbroyer/gradle-errorprone-plugin/releases">
  *     Error Prone Gradle Plugin Releases</a>
  */
-val errorPronePluginVersion = "3.1.0"
+val errorPronePluginVersion = "4.1.0"
 
 /**
  * The version of Protobuf Gradle Plugin.
  *
- * Please keep in sync. with [io.spine.internal.dependency.Protobuf.GradlePlugin.version].
+ * Please keep in sync. with [io.spine.dependency.lib.Protobuf.GradlePlugin.version].
  *
  * @see <a href="https://github.com/google/protobuf-gradle-plugin/releases">
  *     Protobuf Gradle Plugins Releases</a>
  */
-val protobufPluginVersion = "0.9.4"
+val protobufPluginVersion = "0.9.5"
 
 /**
  * The version of Dokka Gradle Plugins.
  *
- * Please keep in sync with [io.spine.internal.dependency.Dokka.version].
+ * Please keep in sync with [io.spine.dependency.build.Dokka.version].
  *
  * @see <a href="https://github.com/Kotlin/dokka/releases">
  *     Dokka Releases</a>
  */
-val dokkaVersion = "1.9.20"
+val dokkaVersion = "2.0.0"
 
 /**
  * The version of Detekt Gradle Plugin.
  *
  * @see <a href="https://github.com/detekt/detekt/releases">Detekt Releases</a>
  */
-val detektVersion = "1.23.0"
+val detektVersion = "1.23.8"
 
 /**
- * @see [io.spine.internal.dependency.Kotest]
+ * @see [io.spine.dependency.test.Kotest]
  */
 val kotestJvmPluginVersion = "0.4.10"
 
 /**
- * @see [io.spine.internal.dependency.Kover]
+ * @see [io.spine.dependency.test.Kover]
  */
-val koverVersion = "0.7.2"
+val koverVersion = "0.9.1"
 
 /**
  * The version of the Shadow Plugin.
@@ -156,15 +155,13 @@ configurations.all {
     }
 }
 
-val jvmVersion = JavaLanguageVersion.of(11)
-
 java {
-    toolchain.languageVersion.set(jvmVersion)
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = jvmVersion.toString()
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 

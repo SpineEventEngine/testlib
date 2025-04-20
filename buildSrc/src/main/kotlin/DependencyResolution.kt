@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,34 +24,34 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.internal.dependency.AnimalSniffer
-import io.spine.internal.dependency.Asm
-import io.spine.internal.dependency.AutoCommon
-import io.spine.internal.dependency.AutoService
-import io.spine.internal.dependency.AutoValue
-import io.spine.internal.dependency.CheckerFramework
-import io.spine.internal.dependency.CommonsCli
-import io.spine.internal.dependency.CommonsCodec
-import io.spine.internal.dependency.CommonsLogging
-import io.spine.internal.dependency.Dokka
-import io.spine.internal.dependency.ErrorProne
-import io.spine.internal.dependency.FindBugs
-import io.spine.internal.dependency.Gson
-import io.spine.internal.dependency.Guava
-import io.spine.internal.dependency.Hamcrest
-import io.spine.internal.dependency.J2ObjC
-import io.spine.internal.dependency.JUnit
-import io.spine.internal.dependency.Jackson
-import io.spine.internal.dependency.JavaDiffUtils
-import io.spine.internal.dependency.Kotest
-import io.spine.internal.dependency.Kotlin
-import io.spine.internal.dependency.Okio
-import io.spine.internal.dependency.OpenTest4J
-import io.spine.internal.dependency.Plexus
-import io.spine.internal.dependency.Protobuf
-import io.spine.internal.dependency.Slf4J
-import io.spine.internal.dependency.Spine
-import io.spine.internal.dependency.Truth
+import io.spine.dependency.build.AnimalSniffer
+import io.spine.dependency.build.CheckerFramework
+import io.spine.dependency.build.Dokka
+import io.spine.dependency.build.ErrorProne
+import io.spine.dependency.build.FindBugs
+import io.spine.dependency.build.JSpecify
+import io.spine.dependency.lib.Asm
+import io.spine.dependency.lib.AutoCommon
+import io.spine.dependency.lib.AutoService
+import io.spine.dependency.lib.AutoValue
+import io.spine.dependency.lib.CommonsCli
+import io.spine.dependency.lib.CommonsCodec
+import io.spine.dependency.lib.CommonsLogging
+import io.spine.dependency.lib.Gson
+import io.spine.dependency.lib.Guava
+import io.spine.dependency.lib.J2ObjC
+import io.spine.dependency.lib.JavaDiffUtils
+import io.spine.dependency.lib.Kotlin
+import io.spine.dependency.lib.Okio
+import io.spine.dependency.lib.Plexus
+import io.spine.dependency.lib.Protobuf
+import io.spine.dependency.lib.Slf4J
+import io.spine.dependency.local.Base
+import io.spine.dependency.local.Spine
+import io.spine.dependency.test.Hamcrest
+import io.spine.dependency.test.Kotest
+import io.spine.dependency.test.OpenTest4J
+import io.spine.dependency.test.Truth
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
@@ -96,6 +96,7 @@ private fun ResolutionStrategy.forceProductionDependencies() {
         FindBugs.annotations,
         Gson.lib,
         Guava.lib,
+        JSpecify.annotations,
         Kotlin.reflect,
         Kotlin.stdLib,
         Kotlin.stdLibCommon,
@@ -110,11 +111,6 @@ private fun ResolutionStrategy.forceProductionDependencies() {
 private fun ResolutionStrategy.forceTestDependencies() {
     force(
         Guava.testLib,
-        JUnit.api,
-        JUnit.bom,
-        JUnit.Platform.commons,
-        JUnit.Platform.launcher,
-        JUnit.legacy,
         Truth.libs,
         Kotest.assertions,
     )
@@ -137,16 +133,6 @@ private fun ResolutionStrategy.forceTransitiveDependencies() {
         Gson.lib,
         Hamcrest.core,
         J2ObjC.annotations,
-        JUnit.Platform.engine,
-        JUnit.Platform.suiteApi,
-        JUnit.runner,
-        Jackson.annotations,
-        Jackson.bom,
-        Jackson.core,
-        Jackson.databind,
-        Jackson.dataformatXml,
-        Jackson.dataformatYaml,
-        Jackson.moduleKotlin,
         JavaDiffUtils.lib,
         Kotlin.jetbrainsAnnotations,
         Okio.lib,
@@ -186,7 +172,7 @@ fun ModuleDependency.excludeSpineBase() {
 fun Project.forceSpineBase() {
     configurations.all {
         resolutionStrategy {
-            force(Spine.base)
+            force(Base.lib)
         }
     }
 }
@@ -195,11 +181,12 @@ fun Project.forceSpineBase() {
  * Forces configurations containing `"proto"` in their names (disregarding the case) to
  * use [Spine.baseForBuildScript].
  */
+@Suppress("unused")
 fun Project.forceBaseInProtoTasks() {
     configurations.configureEach {
-        if (name.toLowerCase().contains("proto")) {
+        if (name.lowercase().contains("proto")) {
             resolutionStrategy {
-                force(Spine.baseForBuildScript)
+                force(Base.libForBuildScript)
             }
         }
     }

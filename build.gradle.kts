@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,28 +24,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.internal.dependency.CheckerFramework
-import io.spine.internal.dependency.Guava
-import io.spine.internal.dependency.JUnit
-import io.spine.internal.dependency.Kotest
-import io.spine.internal.dependency.Protobuf
-import io.spine.internal.dependency.Spine
-import io.spine.internal.dependency.Truth
-import io.spine.internal.gradle.checkstyle.CheckStyleConfig
-import io.spine.internal.gradle.javadoc.JavadocConfig
-import io.spine.internal.gradle.publish.IncrementGuard
-import io.spine.internal.gradle.publish.PublishingRepos
-import io.spine.internal.gradle.publish.spinePublishing
-import io.spine.internal.gradle.report.license.LicenseReporter
-import io.spine.internal.gradle.report.pom.PomGenerator
-import io.spine.internal.gradle.standardToSpineSdk
+import io.spine.dependency.build.CheckerFramework
+import io.spine.dependency.lib.Guava
+import io.spine.dependency.lib.Protobuf
+import io.spine.dependency.local.Logging
+import io.spine.dependency.test.JUnit
+import io.spine.dependency.test.Kotest
+import io.spine.dependency.test.Truth
+import io.spine.gradle.checkstyle.CheckStyleConfig
+import io.spine.gradle.javadoc.JavadocConfig
+import io.spine.gradle.publish.IncrementGuard
+import io.spine.gradle.publish.PublishingRepos
+import io.spine.gradle.publish.spinePublishing
+import io.spine.gradle.report.license.LicenseReporter
+import io.spine.gradle.report.pom.PomGenerator
+import io.spine.gradle.standardToSpineSdk
 
 plugins {
-    `java-module`
-    `kotlin-jvm-module`
+    id("module")
     `compile-protobuf`
-    idea
-    jacoco
+    id("module-testing")
     `gradle-doctor`
     `project-report`
 }
@@ -66,28 +64,33 @@ repositories.standardToSpineSdk()
 dependencies {
     compileOnly(CheckerFramework.annotations)
 
+    val enforcedJunit = enforcedPlatform(JUnit.bom)
+
+    implementation(enforcedJunit)
+
     /*
         Expose tools we use as transitive dependencies to simplify dependency
-        management in projects that use Spine Testlib.
+        management in projects that use Spine TestLib.
     */
     (Protobuf.libs
-            + JUnit.api
+            + JUnit.Jupiter.api
             + Truth.libs
             + Guava.testLib
             + Kotest.assertions).forEach {
         api(it)
     }
-    implementation(Spine.Logging.lib)
+    implementation(Logging.lib)
 
     @Suppress("DEPRECATION")
     run {
         val reason = "io.spine.testing.logging.LogTruth"
-        implementation(io.spine.internal.dependency.Flogger.lib)?.because(reason)
-        runtimeOnly(io.spine.internal.dependency.Flogger.Runtime.systemBackend)?.because(reason)
+        implementation(io.spine.dependency.lib.Flogger.lib)?.because(reason)
+        runtimeOnly(io.spine.dependency.lib.Flogger.Runtime.systemBackend)?.because(reason)
     }
 
-    testImplementation(Spine.Logging.testlibJvm)
-    testImplementation(Spine.Logging.stdContext)?.because(
+    testImplementation(enforcedJunit)
+    testImplementation(Logging.testLib)
+    testImplementation(Logging.stdContext)?.because(
         "We need logging context support in logging tests."
     )
 }

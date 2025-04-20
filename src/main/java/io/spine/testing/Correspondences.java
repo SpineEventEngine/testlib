@@ -27,7 +27,7 @@
 package io.spine.testing;
 
 import com.google.common.truth.Correspondence;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * A factory of {@link Correspondence}s for constructing fluent assertions for collection elements.
