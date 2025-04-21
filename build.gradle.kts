@@ -54,7 +54,7 @@ apply(from = "$rootDir/version.gradle.kts")
 group = "io.spine.tools"
 version = rootProject.extra["versionToPublish"]!!
 
-// Suppress `TooManyFunctions` for `TruthExtensions.kt` file.
+// Suppress `TooManyFunctions` for the `TruthExtensions.kt` file.
 detekt {
     baseline = file("detekt/detekt-baseline.xml")
 }
