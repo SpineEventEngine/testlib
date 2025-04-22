@@ -28,6 +28,7 @@ import BuildSettings.javaVersion
 import io.spine.dependency.build.CheckerFramework
 import io.spine.dependency.build.ErrorProne
 import io.spine.dependency.build.JSpecify
+import io.spine.dependency.kotlinx.Serialization
 import io.spine.dependency.lib.Guava
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Logging
@@ -133,7 +134,10 @@ fun Module.forceConfigurations() {
         excludeProtobufLite()
         all {
             resolutionStrategy {
-                force(Logging.lib)
+                force(
+                    Logging.lib,
+                    Serialization.bom
+                )
             }
         }
     }
