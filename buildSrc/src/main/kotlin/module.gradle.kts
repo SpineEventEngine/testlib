@@ -29,10 +29,8 @@ import io.spine.dependency.build.CheckerFramework
 import io.spine.dependency.build.ErrorProne
 import io.spine.dependency.build.JSpecify
 import io.spine.dependency.lib.Guava
-import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Logging
-import io.spine.dependency.test.JUnit
 import io.spine.dependency.test.Jacoco
 import io.spine.gradle.checkstyle.CheckStyleConfig
 import io.spine.gradle.github.pages.updateGitHubPages
@@ -64,7 +62,6 @@ project.run {
     configureKotlin(javaVersion)
     addDependencies()
     forceConfigurations()
-    suppressMetadataValidationOfEnforcedPlatform()
 
     val generatedDir = "$projectDir/generated"
     setTaskDependencies(generatedDir)
@@ -128,33 +125,6 @@ fun Module.addDependencies() = dependencies {
     }
 
     implementation(Logging.lib)
-}
-
-/**
- * Allows avoiding publishing errors when a dependency is enforced as a platform.
- *
- * The dependencies we already use as enforced platforms are multi-module toolkits
- *  [JUnit] or [Jackson].
- *
- * The error in Gradle looks like this:
- * ```
- * > Invalid publication 'mavenJava':
- *     - Variant 'runtimeElements' contains a dependency on enforced platform 'org.junit:junit-bom'
- *  In general publishing dependencies to enforced platforms is a mistake: enforced platforms
- *  shouldn't be used for published components because they behave like forced dependencies and
- *  leak to consumers. This can result in hard to diagnose dependency resolution errors.
- *  If you did this intentionally you can disable this check by adding 'enforced-platform' to
- *  the suppressed validations of the :generateMetadataFileForMavenJavaPublication task.
- *  For more on suppressing validations, please refer to
- *  https://docs.gradle.org/8.13/userguide/publishing_setup.html#sec:suppressing_validation_errors
- *  in the Gradle documentation.
- *  ```
- */
-fun Module.suppressMetadataValidationOfEnforcedPlatform() {
-    tasks.withType<GenerateModuleMetadata> {
-        suppressedValidationErrors.add(JUnit.bom)
-        suppressedValidationErrors.add(Jackson.bom)
-    }
 }
 
 fun Module.forceConfigurations() {

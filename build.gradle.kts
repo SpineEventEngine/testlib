@@ -64,9 +64,7 @@ repositories.standardToSpineSdk()
 dependencies {
     compileOnly(CheckerFramework.annotations)
 
-    val enforcedJunit = enforcedPlatform(JUnit.bom)
-
-    implementation(enforcedJunit)
+    implementation(platform(JUnit.bom))
 
     /*
         Expose tools we use as transitive dependencies to simplify dependency
@@ -76,9 +74,10 @@ dependencies {
             + JUnit.Jupiter.api
             + Truth.libs
             + Guava.testLib
-            + Kotest.assertions).forEach {
-        api(it)
-    }
+            + Kotest.assertions)
+        .forEach {
+            api(it)
+        }
     implementation(Logging.lib)
 
     @Suppress("DEPRECATION")
@@ -88,7 +87,7 @@ dependencies {
         runtimeOnly(io.spine.dependency.lib.Flogger.Runtime.systemBackend)?.because(reason)
     }
 
-    testImplementation(enforcedJunit)
+    testImplementation(JUnit.Jupiter.engine)
     testImplementation(Logging.testLib)
     testImplementation(Logging.stdContext)?.because(
         "We need logging context support in logging tests."
