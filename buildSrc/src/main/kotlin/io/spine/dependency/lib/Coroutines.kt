@@ -28,10 +28,17 @@ package io.spine.dependency.lib
 
 /**
  * Kotlin Coroutines.
- * 
+ *
  * @see <a href="https://github.com/Kotlin/kotlinx.coroutines">GitHub projecet</a>
  */
 @Suppress("unused", "ConstPropertyName")
+@Deprecated(
+    message = "Please use `Coroutines` from `io.spine.dependency.kotlinx` package",
+    replaceWith = ReplaceWith(
+        expression = "Coroutines",
+        imports = ["io.spine.dependency.kotlinx.Coroutines"]
+    )
+)
 object Coroutines {
     const val group = "org.jetbrains.kotlinx"
     const val version = "1.10.2"

@@ -27,13 +27,23 @@
 package io.spine.dependency.lib
 
 @Suppress("unused", "ConstPropertyName")
+@Deprecated(
+    message = "Please use `KotlinX` from `io.spine.dependency.kotlinx` package",
+    replaceWith = ReplaceWith(
+        expression = "KotlinX",
+        imports = ["io.spine.dependency.kotlinx.KotlinX"]
+    )
+)
 object KotlinX {
 
     const val group = "org.jetbrains.kotlinx"
 
     @Deprecated(
-        message = "Pleaser use top level object `Coroutines` instead.",
-        ReplaceWith("Coroutines")
+        message = "Please use `Coroutines` from `io.spine.dependency.kotlinx` package",
+        replaceWith = ReplaceWith(
+            expression = "Coroutines",
+            imports = ["io.spine.dependency.kotlinx.Coroutines"]
+        )
     )
     object Coroutines {
 
