@@ -24,17 +24,44 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.gradle.javadoc
+package io.spine.gradle.repo
 
-import org.gradle.api.tasks.TaskContainer
-import org.gradle.api.tasks.javadoc.Javadoc
-
-/**
- * Finds a [Javadoc] Gradle task by the passed name.
- */
-fun TaskContainer.javadocTask(named: String) = this.getByName(named) as Javadoc
+import org.gradle.api.GradleException
 
 /**
- * Finds a default [Javadoc] Gradle task.
+ * A name of a repository.
  */
-fun TaskContainer.javadocTask() = this.getByName("javadoc") as Javadoc
+@Suppress("unused")
+class RepoSlug(val value: String) {
+
+    companion object {
+
+        /**
+         * The name of the environment variable containing the repository slug, for which
+         * the Gradle build is performed.
+         */
+        private const val environmentVariable = "REPO_SLUG"
+
+        /**
+         * Reads `REPO_SLUG` environment variable and returns its value.
+         *
+         * In case it is not set, a [org.gradle.api.GradleException] is thrown.
+         */
+        fun fromVar(): RepoSlug {
+            val envValue = System.getenv(environmentVariable)
+            if (envValue.isNullOrEmpty()) {
+                throw GradleException("`REPO_SLUG` environment variable is not set.")
+            }
+            return RepoSlug(envValue)
+        }
+    }
+
+    override fun toString(): String = value
+
+    /**
+     * Returns the GitHub URL to the project repository.
+     */
+    fun gitHost(): String {
+        return "git@github.com-publish:${value}.git"
+    }
+}

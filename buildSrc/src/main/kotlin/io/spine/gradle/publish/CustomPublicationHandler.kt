@@ -26,7 +26,7 @@
 
 package io.spine.gradle.publish
 
-import io.spine.gradle.Repository
+import io.spine.gradle.repo.Repository
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPublication
 
@@ -36,7 +36,7 @@ import org.gradle.api.publish.maven.MavenPublication
  *
  * Such publications should be treated differently than [StandardJavaPublicationHandler],
  * which is <em>created</em> for a module. Instead, since the publications are already declared,
- * this class only [assigns maven coordinates][copyProjectAttributes].
+ * this class only [assigns Maven coordinates][copyProjectAttributes].
  *
  * A module which declares custom publications must be specified in
  * the [SpinePublishing.modulesWithCustomPublishing] property.
@@ -46,13 +46,25 @@ import org.gradle.api.publish.maven.MavenPublication
  * the [standard][org.gradle.api.publish.maven.MavenPublication] publication, and custom ones.
  * To have both standard and custom publications, please specify custom artifact IDs or
  * classifiers for each custom publication.
+ *
+ * @see StandardJavaPublicationHandler
  */
-internal class CustomPublicationHandler(project: Project, destinations: Set<Repository>) :
-    PublicationHandler(project, destinations) {
+internal class CustomPublicationHandler private constructor(
+    project: Project,
+    destinations: Set<Repository>
+) : PublicationHandler(project, destinations) {
 
     override fun handlePublications() {
         project.publications.forEach {
             (it as MavenPublication).copyProjectAttributes()
         }
+    }
+
+    companion object : HandlerFactory<CustomPublicationHandler>() {
+        override fun create(
+            project: Project,
+            destinations: Set<Repository>,
+            vararg params: Any
+        ): CustomPublicationHandler = CustomPublicationHandler(project, destinations)
     }
 }

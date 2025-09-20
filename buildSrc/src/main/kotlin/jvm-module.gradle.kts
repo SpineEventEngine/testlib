@@ -24,43 +24,44 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import BuildSettings.javaVersion
+import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.build.CheckerFramework
+import io.spine.dependency.build.Dokka
 import io.spine.dependency.build.ErrorProne
 import io.spine.dependency.build.JSpecify
-import io.spine.dependency.kotlinx.Serialization
 import io.spine.dependency.lib.Guava
 import io.spine.dependency.lib.Protobuf
-import io.spine.dependency.local.Logging
+import io.spine.dependency.local.Reflect
 import io.spine.dependency.test.Jacoco
 import io.spine.gradle.checkstyle.CheckStyleConfig
 import io.spine.gradle.github.pages.updateGitHubPages
 import io.spine.gradle.javac.configureErrorProne
 import io.spine.gradle.javac.configureJavac
 import io.spine.gradle.javadoc.JavadocConfig
-import io.spine.gradle.kotlin.applyJvmToolchain
 import io.spine.gradle.kotlin.setFreeCompilerArgs
 import io.spine.gradle.report.license.LicenseReporter
 
 plugins {
     `java-library`
     id("net.ltgt.errorprone")
-    kotlin("jvm")
     id("pmd-settings")
-    id("org.jetbrains.kotlinx.kover")
     id("project-report")
-    id("detekt-code-analysis")
     id("dokka-for-java")
+    kotlin("jvm")
+    id("io.kotest")
+    id("detekt-code-analysis")
     id("dokka-for-kotlin")
+    id("org.jetbrains.kotlinx.kover")
+    id("module-testing")
 }
-
+apply<BomsPlugin>()
 LicenseReporter.generateReportIn(project)
 JavadocConfig.applyTo(project)
 CheckStyleConfig.applyTo(project)
 
 project.run {
-    configureJava(javaVersion)
-    configureKotlin(javaVersion)
+    configureJava()
+    configureKotlin()
     addDependencies()
     forceConfigurations()
 
@@ -72,9 +73,10 @@ project.run {
 
 typealias Module = Project
 
-fun Module.configureJava(javaVersion: JavaLanguageVersion) {
+fun Module.configureJava() {
     java {
-        toolchain.languageVersion.set(javaVersion)
+        sourceCompatibility = BuildSettings.javaVersionCompat
+        targetCompatibility = BuildSettings.javaVersionCompat
     }
 
     tasks {
@@ -85,9 +87,8 @@ fun Module.configureJava(javaVersion: JavaLanguageVersion) {
     }
 }
 
-fun Module.configureKotlin(javaVersion: JavaLanguageVersion) {
+fun Module.configureKotlin() {
     kotlin {
-        applyJvmToolchain(javaVersion.asInt())
         explicitApi()
         compilerOptions {
             jvmTarget.set(BuildSettings.jvmTarget)
@@ -116,16 +117,13 @@ fun Module.configureKotlin(javaVersion: JavaLanguageVersion) {
  */
 fun Module.addDependencies() = dependencies {
     errorprone(ErrorProne.core)
-    api(JSpecify.annotations)
+
     Protobuf.libs.forEach { api(it) }
     api(Guava.lib)
 
     compileOnlyApi(CheckerFramework.annotations)
-    ErrorProne.annotations.forEach {
-        compileOnlyApi(it)
-    }
-
-    implementation(Logging.lib)
+    api(JSpecify.annotations)
+    ErrorProne.annotations.forEach { compileOnlyApi(it) }
 }
 
 fun Module.forceConfigurations() {
@@ -135,8 +133,8 @@ fun Module.forceConfigurations() {
         all {
             resolutionStrategy {
                 force(
-                    Logging.lib,
-                    Serialization.bom
+                    Dokka.BasePlugin.lib,
+                    Reflect.lib,
                 )
             }
         }
@@ -169,5 +167,3 @@ fun Module.configureGitHubPages() {
         rootFolder.set(rootDir)
     }
 }
-
-
