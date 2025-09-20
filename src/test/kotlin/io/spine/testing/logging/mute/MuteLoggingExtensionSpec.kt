@@ -143,7 +143,7 @@ private class LoggingStub {
     }
 
     companion object {
-        private val logger: Logger<*> = LoggingFactory.forEnclosingClass()
+        private val logger: Logger = LoggingFactory.forEnclosingClass()
     }
 }
 
@@ -159,7 +159,7 @@ private class StubContext(private val executionThrowable: Throwable?) : Extensio
     override fun getTags(): Set<String> = ImmutableSet.of()
     override fun getElement(): Optional<AnnotatedElement> = Optional.empty()
     override fun getTestClass(): Optional<Class<*>> = Optional.empty()
-    override fun getEnclosingTestClasses(): List<Class<*>?>? = emptyList()
+    override fun getEnclosingTestClasses(): List<Class<*>?> = emptyList()
     override fun getTestInstanceLifecycle(): Optional<TestInstance.Lifecycle> = Optional.empty()
     override fun getTestInstance(): Optional<Any> = Optional.empty()
     override fun getTestInstances(): Optional<TestInstances> = Optional.empty()
@@ -188,6 +188,11 @@ private class StubContext(private val executionThrowable: Throwable?) : Extensio
     ) = Unit
 
     override fun getStore(namespace: ExtensionContext.Namespace): ExtensionContext.Store? = null
+    override fun getStore(
+        scope: ExtensionContext.StoreScope?,
+        namespace: ExtensionContext.Namespace?
+    ): ExtensionContext.Store? = null
+
     override fun getExecutionMode(): ExecutionMode = ExecutionMode.SAME_THREAD
     override fun getExecutableInvoker(): ExecutableInvoker? = null
 }

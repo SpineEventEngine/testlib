@@ -32,6 +32,7 @@ import io.spine.dependency.build.JSpecify
 import io.spine.dependency.lib.Guava
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Reflect
+import io.spine.dependency.local.Logging
 import io.spine.dependency.test.Jacoco
 import io.spine.gradle.checkstyle.CheckStyleConfig
 import io.spine.gradle.github.pages.updateGitHubPages
@@ -133,6 +134,7 @@ fun Module.forceConfigurations() {
         all {
             resolutionStrategy {
                 force(
+                    Logging.lib,
                     Dokka.BasePlugin.lib,
                     Reflect.lib,
                 )

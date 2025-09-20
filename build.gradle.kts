@@ -36,9 +36,9 @@ import io.spine.gradle.javadoc.JavadocConfig
 import io.spine.gradle.publish.IncrementGuard
 import io.spine.gradle.publish.PublishingRepos
 import io.spine.gradle.publish.spinePublishing
+import io.spine.gradle.repo.standardToSpineSdk
 import io.spine.gradle.report.license.LicenseReporter
 import io.spine.gradle.report.pom.PomGenerator
-import io.spine.gradle.standardToSpineSdk
 
 plugins {
     id("module")

@@ -49,7 +49,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  */
 public final class Testing {
 
-    private static final Logger<?> logger = LoggingFactory.forEnclosingClass();
+    private static final Logger logger = LoggingFactory.forEnclosingClass();
 
     /** Prevent instantiation of this utility class. */
     private Testing() {
