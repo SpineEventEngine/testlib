@@ -45,7 +45,10 @@ public fun withLoggingMutedIn(vararg loggerNames: String, block: () -> Unit) {
 public fun withLoggingMutedIn(loggerNames: Iterable<String>, block: () -> Unit) {
     val levels = loggerNames.associateWith { Level.OFF }
     val logLevelMap = LogLevelMap.create(levels)
-    ScopedLoggingContext.newContext().withLogLevelMap(logLevelMap).execute {
-        block()
-    }
+    ScopedLoggingContext.getInstance()
+        .newContext()
+        .withLogLevelMap(logLevelMap)
+        .call {
+            block()
+        }
 }

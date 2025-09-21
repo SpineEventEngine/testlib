@@ -26,7 +26,7 @@
 
 package io.spine.gradle.publish
 
-import io.spine.gradle.Repository
+import io.spine.gradle.repo.Repository
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.TaskProvider
@@ -40,32 +40,53 @@ import org.gradle.kotlin.dsl.create
  * A publication has a name and consists of one or more artifacts plus information about
  * those artifacts – the metadata.
  *
- * An instance of this class represents [org.gradle.api.publish.maven.MavenPublication] named "mavenJava". It is generally
- * accepted that a publication with this name contains a Java project published to one or
- * more Maven repositories.
+ * An instance of this class represents
+ * [MavenPublication][org.gradle.api.publish.maven.MavenPublication]
+ * named [`"mavenJava"`][PUBLICATION_NAME].
+ * It is generally accepted that a publication with this name contains a Java project
+ * published to one or more Maven repositories.
  *
  * By default, only a jar with the compilation output of `main` source set and its
  * metadata files are published. Other artifacts are specified through the
- * [constructor parameter][jarFlags]. Please, take a look on [specifyArtifacts] for additional info.
+ * [constructor parameter][jarFlags].
+ * Please take a look on [specifyArtifacts] for additional info.
  *
  * @param jarFlags The flags for additional JARs published along with the compilation output.
  * @param destinations Maven repositories to which the produced artifacts will be sent.
  * @see <a href="https://docs.gradle.org/current/userguide/publishing_maven.html#publishing_maven:publications">
  *   The Maven Publish Plugin | Publications</a>
+ * @see CustomPublicationHandler
  */
-internal class StandardJavaPublicationHandler(
+internal class StandardJavaPublicationHandler private constructor(
     project: Project,
     private val jarFlags: JarFlags,
     destinations: Set<Repository>,
 ) : PublicationHandler(project, destinations) {
 
+    companion object : HandlerFactory<StandardJavaPublicationHandler>() {
+
+        /**
+         * The name of the publication created by [StandardJavaPublicationHandler].
+         */
+        const val PUBLICATION_NAME = "mavenJava"
+
+        override fun create(
+            project: Project,
+            destinations: Set<Repository>,
+            vararg params: Any
+        ): StandardJavaPublicationHandler {
+           return StandardJavaPublicationHandler(project, params[0] as JarFlags, destinations)
+        }
+    }
+
     /**
-     * Creates a new "mavenJava" [org.gradle.api.publish.maven.MavenPublication] in the given project.
+     * Creates a new `"mavenJava"` [MavenPublication][org.gradle.api.publish.maven.MavenPublication]
+     * in the [project] associated with this publication handler.
      */
     override fun handlePublications() {
         val jars = project.artifacts(jarFlags)
         val publications = project.publications
-        publications.create<MavenPublication>("mavenJava") {
+        publications.create<MavenPublication>(PUBLICATION_NAME) {
             copyProjectAttributes()
             specifyArtifacts(jars)
         }
@@ -87,11 +108,12 @@ internal class StandardJavaPublicationHandler(
      *
      * @see <a href="https://maven.apache.org/pom.html">Maven – POM Reference</a>
      * @see <a href="https://docs.gradle.org/current/userguide/publishing_gradle_module_metadata.html">
-     *      Understanding Gradle Module Metadata</a>
+     *   Understanding Gradle Module Metadata</a>
      */
     private fun MavenPublication.specifyArtifacts(jars: Set<TaskProvider<Jar>>) {
 
-        /* "java" component provides a jar with compilation output of "main" source set.
+        /*
+           "java" component provides a jar with compilation output of "main" source set.
            It is NOT defined as another `Jar` task intentionally. Doing that will leave the
            publication without correct ".pom" and ".module" metadata files generated.
         */
@@ -100,8 +122,9 @@ internal class StandardJavaPublicationHandler(
             from(it)
         }
 
-        /* Other artifacts are represented by `Jar` tasks. Those artifacts don't bring any other
-           metadata in comparison with `Component` (such as dependencies notation).
+        /*
+           Other artifacts are represented by `Jar` tasks. Those artifacts do not bring any other
+           metadata in comparison with `Component` (such as the `dependencies` notation).
          */
         jars.forEach {
             artifact(it)
