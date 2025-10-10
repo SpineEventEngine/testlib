@@ -26,37 +26,31 @@
 
 package io.spine.dependency.local
 
+// For backward compatibility.
+typealias CoreJava = CoreJvm
+
 /**
- * Artifacts of the `tool-base` module.
+ * Dependencies on `core-java` modules.
  *
- * @see <a href="https://github.com/SpineEventEngine/tool-base">tool-base</a>
+ * See [`SpineEventEngine/core-java`](https://github.com/SpineEventEngine/core-java/).
  */
 @Suppress("ConstPropertyName", "unused")
-object ToolBase {
-    const val group = Spine.toolsGroup
-    const val version = "2.0.0-SNAPSHOT.361"
+object CoreJvm {
+    const val group = Spine.group
+    const val version = "2.0.0-SNAPSHOT.332"
 
-    const val lib = "$group:tool-base:$version"
-    const val classicCodegen = "$group:classic-codegen:$version"
-    const val pluginBase = "$group:plugin-base:$version"
-    const val pluginTestlib = "$group:plugin-testlib:$version"
+    const val coreArtifact = "spine-core"
+    const val clientArtifact = "spine-client"
+    const val serverArtifact = "spine-server"
 
-    const val intellijPlatform = "$group:intellij-platform:$version"
-    const val intellijPlatformJava = "$group:intellij-platform-java:$version"
+    const val core = "$group:$coreArtifact:$version"
+    const val client = "$group:$clientArtifact:$version"
+    const val server = "$group:$serverArtifact:$version"
 
-    const val psi = "$group:psi:$version"
-    const val psiJava = "$group:psi-java:$version"
+    @Deprecated("Use `serverTestLib` instead.", ReplaceWith("serverTestLib"))
+    const val testUtilServer = "${Spine.toolsGroup}:spine-server-testlib:$version"
 
-    const val gradleRootPlugin = "$group:gradle-root-plugin:$version"
-    const val gradlePluginApi = "$group:gradle-plugin-api:$version"
-    const val gradlePluginApiTestFixtures = "$group:gradle-plugin-api-test-fixtures:$version"
-
-    const val jvmTools = "$group:jvm-tools:$version"
-    const val jvmToolPlugins = "$group:jvm-tool-all-plugins:$version"
-
-    object JavadocFilter {
-        const val group = ToolBase.group
-        const val version = "2.0.0-SNAPSHOT.75"
-        const val artifact = "$group:spine-javadoc-filter:$version"
-    }
+    const val coreTestLib = "${Spine.toolsGroup}:spine-core-testlib:$version"
+    const val clientTestLib = "${Spine.toolsGroup}:spine-client-testlib:$version"
+    const val serverTestLib = "${Spine.toolsGroup}:spine-server-testlib:$version"
 }
