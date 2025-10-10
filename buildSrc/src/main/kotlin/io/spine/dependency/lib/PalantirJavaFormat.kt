@@ -24,15 +24,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.dependency.build
+package io.spine.dependency.lib
+
+import io.spine.dependency.Dependency
 
 /**
- * Helps optimize Gradle Builds by ensuring recommendations at build time.
+ * Palantir Java Format.
  *
- * See [plugin site](https://runningcode.github.io/gradle-doctor) for features and usage.
+ * @see <a href="https://github.com/palantir/palantir-java-format">GitHub Repo</a>
  */
-@Suppress("unused", "ConstPropertyName")
-object GradleDoctor {
-    const val version = "0.12.0"
-    const val pluginId = "com.osacky.doctor"
+object PalantirJavaFormat : Dependency() {
+
+    override val group = "com.palantir.javaformat"
+    override val version = "2.75.0"
+    override val modules: List<String> = listOf("$group:palantir-java-format")
+
+    val lib = artifact(modules[0])
 }
