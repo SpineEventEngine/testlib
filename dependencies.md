@@ -1,6 +1,6 @@
 
 
-# Dependencies of `io.spine.tools:spine-testlib:2.0.0-SNAPSHOT.211`
+# Dependencies of `io.spine.tools:base-testlib:2.0.0-SNAPSHOT.212`
 
 ## Runtime
 1.  **Group** : com.google.auto.value. **Name** : auto-value-annotations. **Version** : 1.10.2.
@@ -31,11 +31,11 @@
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.guava. **Name** : guava. **Version** : 33.4.8-jre.
+1.  **Group** : com.google.guava. **Name** : guava. **Version** : 33.5.0-jre.
      * **Project URL:** [https://github.com/google/guava](https://github.com/google/guava)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.guava. **Name** : guava-testlib. **Version** : 33.4.8-jre.
+1.  **Group** : com.google.guava. **Name** : guava-testlib. **Version** : 33.5.0-jre.
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.google.guava. **Name** : listenablefuture. **Version** : 9999.0-empty-to-avoid-conflict-with-guava.
@@ -45,15 +45,15 @@
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.31.1.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.31.1.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.31.1.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -72,27 +72,27 @@
 1.  **Group** : io.github.java-diff-utils. **Name** : java-diff-utils. **Version** : 4.12.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.0.3.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.0.3.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.0.3.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.0.3.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.0.3.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.0.3.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -117,15 +117,15 @@
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-bom. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-bom. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -173,15 +173,15 @@
      * **Project URL:** [http://jspecify.org/](http://jspecify.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.junit. **Name** : junit-bom. **Version** : 5.13.2.
+1.  **Group** : org.junit. **Name** : junit-bom. **Version** : 6.0.3.
      * **Project URL:** [https://junit.org/](https://junit.org/)
      * **License:** [Eclipse Public License v2.0](https://www.eclipse.org/legal/epl-v20.html)
 
-1.  **Group** : org.junit.jupiter. **Name** : junit-jupiter-api. **Version** : 5.13.2.
+1.  **Group** : org.junit.jupiter. **Name** : junit-jupiter-api. **Version** : 6.0.3.
      * **Project URL:** [https://junit.org/](https://junit.org/)
      * **License:** [Eclipse Public License v2.0](https://www.eclipse.org/legal/epl-v20.html)
 
-1.  **Group** : org.junit.platform. **Name** : junit-platform-commons. **Version** : 1.13.2.
+1.  **Group** : org.junit.platform. **Name** : junit-platform-commons. **Version** : 6.0.3.
      * **Project URL:** [https://junit.org/](https://junit.org/)
      * **License:** [Eclipse Public License v2.0](https://www.eclipse.org/legal/epl-v20.html)
 
@@ -195,48 +195,39 @@
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 ## Compile, tests, and tooling
-1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-bom](https://github.com/FasterXML/jackson-bom)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.12.7.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.12.7.1.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-dataformat-xml](https://github.com/FasterXML/jackson-dataformat-xml)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-jaxb-annotations. **Version** : 2.12.7.
-     * **Project URL:** [https://github.com/FasterXML/jackson-modules-base](https://github.com/FasterXML/jackson-modules-base)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.2.4.
+1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.5.1.
      * **Project URL:** [https://github.com/FasterXML/woodstox](https://github.com/FasterXML/woodstox)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 2.9.3.
-     * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
-     * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.0.5.
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
@@ -309,11 +300,11 @@
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.guava. **Name** : guava. **Version** : 33.4.8-jre.
+1.  **Group** : com.google.guava. **Name** : guava. **Version** : 33.5.0-jre.
      * **Project URL:** [https://github.com/google/guava](https://github.com/google/guava)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.guava. **Name** : guava-testlib. **Version** : 33.4.8-jre.
+1.  **Group** : com.google.guava. **Name** : guava-testlib. **Version** : 33.5.0-jre.
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.google.guava. **Name** : listenablefuture. **Version** : 9999.0-empty-to-avoid-conflict-with-guava.
@@ -323,19 +314,19 @@
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.31.1.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.31.1.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.31.1.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protoc. **Version** : 4.31.1.
+1.  **Group** : com.google.protobuf. **Name** : protoc. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -355,6 +346,10 @@
 1.  **Group** : com.puppycrawl.tools. **Name** : checkstyle. **Version** : 10.12.1.
      * **Project URL:** [https://checkstyle.org/](https://checkstyle.org/)
      * **License:** [LGPL-2.1+](http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt)
+
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
 
 1.  **Group** : commons-beanutils. **Name** : commons-beanutils. **Version** : 1.9.4.
      * **Project URL:** [https://commons.apache.org/proper/commons-beanutils/](https://commons.apache.org/proper/commons-beanutils/)
@@ -491,49 +486,29 @@
      * **Project URL:** [https://detekt.dev](https://detekt.dev)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.0.3.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.0.3.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.0.3.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.0.3.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.0.3.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.0.3.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : io.opentelemetry. **Name** : opentelemetry-api. **Version** : 1.41.0.
-     * **Project URL:** [https://github.com/open-telemetry/opentelemetry-java](https://github.com/open-telemetry/opentelemetry-java)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : io.opentelemetry. **Name** : opentelemetry-context. **Version** : 1.41.0.
-     * **Project URL:** [https://github.com/open-telemetry/opentelemetry-java](https://github.com/open-telemetry/opentelemetry-java)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : jakarta.activation. **Name** : jakarta.activation-api. **Version** : 1.2.1.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [EDL 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
-
-1.  **Group** : jakarta.xml.bind. **Name** : jakarta.xml.bind-api. **Version** : 2.3.2.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [Eclipse Distribution License - v 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
 
 1.  **Group** : javax.inject. **Name** : javax.inject. **Version** : 1.
      * **Project URL:** [http://code.google.com/p/atinject/](http://code.google.com/p/atinject/)
@@ -593,23 +568,6 @@
      * **Project URL:** [https://github.com/apiguardian-team/apiguardian](https://github.com/apiguardian-team/apiguardian)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.bouncycastle. **Name** : bcpg-jdk18on. **Version** : 1.80.
-     * **Project URL:** [https://www.bouncycastle.org/download/bouncy-castle-java/](https://www.bouncycastle.org/download/bouncy-castle-java/)
-     * **License:** [Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-     * **License:** [Bouncy Castle Licence](https://www.bouncycastle.org/licence.html)
-
-1.  **Group** : org.bouncycastle. **Name** : bcpkix-jdk18on. **Version** : 1.80.
-     * **Project URL:** [https://www.bouncycastle.org/download/bouncy-castle-java/](https://www.bouncycastle.org/download/bouncy-castle-java/)
-     * **License:** [Bouncy Castle Licence](https://www.bouncycastle.org/licence.html)
-
-1.  **Group** : org.bouncycastle. **Name** : bcprov-jdk18on. **Version** : 1.80.
-     * **Project URL:** [https://www.bouncycastle.org/download/bouncy-castle-java/](https://www.bouncycastle.org/download/bouncy-castle-java/)
-     * **License:** [Bouncy Castle Licence](https://www.bouncycastle.org/licence.html)
-
-1.  **Group** : org.bouncycastle. **Name** : bcutil-jdk18on. **Version** : 1.80.
-     * **Project URL:** [https://www.bouncycastle.org/download/bouncy-castle-java/](https://www.bouncycastle.org/download/bouncy-castle-java/)
-     * **License:** [Bouncy Castle Licence](https://www.bouncycastle.org/licence.html)
-
 1.  **Group** : org.checkerframework. **Name** : checker-compat-qual. **Version** : 2.5.3.
      * **Project URL:** [https://checkerframework.org](https://checkerframework.org)
      * **License:** [GNU General Public License, version 2 (GPL2), with the classpath exception](http://www.gnu.org/software/classpath/license.html)
@@ -667,27 +625,31 @@
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -695,23 +657,31 @@
      * **Project URL:** [https://github.com/JetBrains/intellij-deps-trove4j](https://github.com/JetBrains/intellij-deps-trove4j)
      * **License:** [GNU LESSER GENERAL PUBLIC LICENSE 2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : abi-tools. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : abi-tools. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : abi-tools-api. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : abi-tools-api. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-bom. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-bom. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-build-tools-api. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-build-tools-api. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-build-tools-impl. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-build-tools-compat. **Version** : 2.3.20.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-build-tools-cri-impl. **Version** : 2.3.20.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-build-tools-impl. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -719,15 +689,15 @@
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-compiler-embeddable. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-compiler-embeddable. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-compiler-runner. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-compiler-runner. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-daemon-client. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-daemon-client. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -735,15 +705,19 @@
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-daemon-embeddable. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-daemon-embeddable. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-klib-commonizer-embeddable. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-klib-abi-reader. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-metadata-jvm. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-klib-commonizer-embeddable. **Version** : 2.3.20.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-metadata-jvm. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -751,7 +725,7 @@
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -759,23 +733,23 @@
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-script-runtime. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-script-runtime. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-scripting-common. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-scripting-common. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-scripting-compiler-embeddable. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-scripting-compiler-embeddable. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-scripting-compiler-impl-embeddable. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-scripting-compiler-impl-embeddable. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-scripting-jvm. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-scripting-jvm. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -783,7 +757,7 @@
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -791,7 +765,7 @@
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-common. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-common. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -799,17 +773,21 @@
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.3.20.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : swift-export-embeddable. **Version** : 2.2.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.3.20.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlinx. **Name** : atomicfu. **Version** : 0.23.1.
-     * **Project URL:** [https://github.com/Kotlin/kotlinx.atomicfu](https://github.com/Kotlin/kotlinx.atomicfu)
-     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.3.20.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlinx. **Name** : atomicfu. **Version** : 0.29.0.
      * **Project URL:** [https://github.com/Kotlin/kotlinx.atomicfu](https://github.com/Kotlin/kotlinx.atomicfu)
@@ -863,23 +841,11 @@
      * **Project URL:** [https://github.com/Kotlin/kotlinx.html](https://github.com/Kotlin/kotlinx.html)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlinx. **Name** : kotlinx-serialization-bom. **Version** : 1.7.3.
-     * **Project URL:** [https://github.com/Kotlin/kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization)
-     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : org.jetbrains.kotlinx. **Name** : kotlinx-serialization-core. **Version** : 1.4.1.
      * **Project URL:** [https://github.com/Kotlin/kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlinx. **Name** : kotlinx-serialization-core. **Version** : 1.7.3.
-     * **Project URL:** [https://github.com/Kotlin/kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization)
-     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : org.jetbrains.kotlinx. **Name** : kotlinx-serialization-core-jvm. **Version** : 1.4.1.
-     * **Project URL:** [https://github.com/Kotlin/kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization)
-     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jetbrains.kotlinx. **Name** : kotlinx-serialization-core-jvm. **Version** : 1.7.3.
      * **Project URL:** [https://github.com/Kotlin/kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -899,7 +865,7 @@
      * **Project URL:** [http://jspecify.org/](http://jspecify.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.junit. **Name** : junit-bom. **Version** : 5.13.2.
+1.  **Group** : org.junit. **Name** : junit-bom. **Version** : 6.0.3.
      * **Project URL:** [https://junit.org/](https://junit.org/)
      * **License:** [Eclipse Public License v2.0](https://www.eclipse.org/legal/epl-v20.html)
 
@@ -907,27 +873,27 @@
      * **Project URL:** [https://junit-pioneer.org/](https://junit-pioneer.org/)
      * **License:** [Eclipse Public License v2.0](https://www.eclipse.org/legal/epl-v20.html)
 
-1.  **Group** : org.junit.jupiter. **Name** : junit-jupiter-api. **Version** : 5.13.2.
+1.  **Group** : org.junit.jupiter. **Name** : junit-jupiter-api. **Version** : 6.0.3.
      * **Project URL:** [https://junit.org/](https://junit.org/)
      * **License:** [Eclipse Public License v2.0](https://www.eclipse.org/legal/epl-v20.html)
 
-1.  **Group** : org.junit.jupiter. **Name** : junit-jupiter-engine. **Version** : 5.13.2.
+1.  **Group** : org.junit.jupiter. **Name** : junit-jupiter-engine. **Version** : 6.0.3.
      * **Project URL:** [https://junit.org/](https://junit.org/)
      * **License:** [Eclipse Public License v2.0](https://www.eclipse.org/legal/epl-v20.html)
 
-1.  **Group** : org.junit.jupiter. **Name** : junit-jupiter-params. **Version** : 5.13.2.
+1.  **Group** : org.junit.jupiter. **Name** : junit-jupiter-params. **Version** : 6.0.3.
      * **Project URL:** [https://junit.org/](https://junit.org/)
      * **License:** [Eclipse Public License v2.0](https://www.eclipse.org/legal/epl-v20.html)
 
-1.  **Group** : org.junit.platform. **Name** : junit-platform-commons. **Version** : 1.13.2.
+1.  **Group** : org.junit.platform. **Name** : junit-platform-commons. **Version** : 6.0.3.
      * **Project URL:** [https://junit.org/](https://junit.org/)
      * **License:** [Eclipse Public License v2.0](https://www.eclipse.org/legal/epl-v20.html)
 
-1.  **Group** : org.junit.platform. **Name** : junit-platform-engine. **Version** : 1.13.2.
+1.  **Group** : org.junit.platform. **Name** : junit-platform-engine. **Version** : 6.0.3.
      * **Project URL:** [https://junit.org/](https://junit.org/)
      * **License:** [Eclipse Public License v2.0](https://www.eclipse.org/legal/epl-v20.html)
 
-1.  **Group** : org.junit.platform. **Name** : junit-platform-launcher. **Version** : 1.13.2.
+1.  **Group** : org.junit.platform. **Name** : junit-platform-launcher. **Version** : 6.0.3.
      * **Project URL:** [https://junit.org/](https://junit.org/)
      * **License:** [Eclipse Public License v2.0](https://www.eclipse.org/legal/epl-v20.html)
 
@@ -982,6 +948,6 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 10 19:29:47 WEST 2025** using 
+This report was generated on **Mon Apr 06 17:18:07 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
