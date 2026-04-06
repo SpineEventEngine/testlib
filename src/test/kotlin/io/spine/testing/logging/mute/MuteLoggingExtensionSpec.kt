@@ -152,9 +152,7 @@ private class LoggingStub {
 private class StubContext(private val executionThrowable: Throwable?) : ExtensionContext {
 
     override fun getParent(): Optional<ExtensionContext> = Optional.empty()
-    override fun getRoot(): ExtensionContext {
-        TODO("Not yet implemented")
-    }
+    override fun getRoot(): ExtensionContext = nothing()
     override fun getUniqueId(): String = ""
     override fun getDisplayName(): String = ""
     override fun getTags(): Set<String> = ImmutableSet.of()
@@ -173,39 +171,33 @@ private class StubContext(private val executionThrowable: Throwable?) : Extensio
     override fun <T : Any> getConfigurationParameter(
         key: String,
         transformer: Function<in String, out T?>
-    ): Optional<T> {
-        TODO("Not yet implemented")
-    }
+    ): Optional<T> = nothing()
 
     override fun publishReportEntry(map: Map<String, String>) = Unit
     override fun publishFile(
         name: String,
         mediaType: org.junit.jupiter.api.MediaType,
         action: ThrowingConsumer<Path>
-    ) {
-        TODO("Not yet implemented")
-    }
+    ): Unit = nothing()
 
     override fun publishDirectory(
         name: String,
         action: ThrowingConsumer<Path>
-    ) {
-        TODO("Not yet implemented")
-    }
+    ): Unit = nothing()
 
-    override fun getStore(namespace: ExtensionContext.Namespace): ExtensionContext.Store {
-        TODO("Not yet implemented")
-    }
+    override fun getStore(namespace: ExtensionContext.Namespace): ExtensionContext.Store = nothing()
 
     override fun getStore(
         scope: ExtensionContext.StoreScope,
         namespace: ExtensionContext.Namespace
     ): ExtensionContext.Store {
-        TODO("Not yet implemented")
+        nothing()
     }
 
     override fun getExecutionMode(): ExecutionMode = ExecutionMode.SAME_THREAD
-    override fun getExecutableInvoker(): ExecutableInvoker {
-        TODO("Not yet implemented")
+    override fun getExecutableInvoker(): ExecutableInvoker = nothing()
+
+    private fun nothing(): Nothing {
+        TODO("Stub method should not be called.")
     }
 }
