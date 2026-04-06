@@ -47,7 +47,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.extension.ExecutableInvoker
 import org.junit.jupiter.api.extension.ExtensionContext
-import org.junit.jupiter.api.extension.MediaType
 import org.junit.jupiter.api.extension.TestInstances
 import org.junit.jupiter.api.function.ThrowingConsumer
 import org.junit.jupiter.api.parallel.ExecutionMode
@@ -153,13 +152,15 @@ private class LoggingStub {
 private class StubContext(private val executionThrowable: Throwable?) : ExtensionContext {
 
     override fun getParent(): Optional<ExtensionContext> = Optional.empty()
-    override fun getRoot(): ExtensionContext? = null
-    override fun getUniqueId(): String? = null
-    override fun getDisplayName(): String? = null
+    override fun getRoot(): ExtensionContext {
+        TODO("Not yet implemented")
+    }
+    override fun getUniqueId(): String = ""
+    override fun getDisplayName(): String = ""
     override fun getTags(): Set<String> = ImmutableSet.of()
     override fun getElement(): Optional<AnnotatedElement> = Optional.empty()
     override fun getTestClass(): Optional<Class<*>> = Optional.empty()
-    override fun getEnclosingTestClasses(): List<Class<*>?> = emptyList()
+    override fun getEnclosingTestClasses(): List<Class<*>> = emptyList()
     override fun getTestInstanceLifecycle(): Optional<TestInstance.Lifecycle> = Optional.empty()
     override fun getTestInstance(): Optional<Any> = Optional.empty()
     override fun getTestInstances(): Optional<TestInstances> = Optional.empty()
@@ -169,30 +170,42 @@ private class StubContext(private val executionThrowable: Throwable?) : Extensio
         Optional.ofNullable(executionThrowable)
 
     override fun getConfigurationParameter(key: String): Optional<String> = Optional.empty()
-
     override fun <T : Any> getConfigurationParameter(
         key: String,
-        transformer: Function<String, T>
-    ): Optional<T> = Optional.empty()
+        transformer: Function<in String, out T?>
+    ): Optional<T> {
+        TODO("Not yet implemented")
+    }
 
     override fun publishReportEntry(map: Map<String, String>) = Unit
     override fun publishFile(
-        name: String?,
-        mediaType: MediaType?,
-        action: ThrowingConsumer<Path?>?
-    ) = Unit
+        name: String,
+        mediaType: org.junit.jupiter.api.MediaType,
+        action: ThrowingConsumer<Path>
+    ) {
+        TODO("Not yet implemented")
+    }
 
     override fun publishDirectory(
-        name: String?,
-        action: ThrowingConsumer<Path?>?
-    ) = Unit
+        name: String,
+        action: ThrowingConsumer<Path>
+    ) {
+        TODO("Not yet implemented")
+    }
 
-    override fun getStore(namespace: ExtensionContext.Namespace): ExtensionContext.Store? = null
+    override fun getStore(namespace: ExtensionContext.Namespace): ExtensionContext.Store {
+        TODO("Not yet implemented")
+    }
+
     override fun getStore(
-        scope: ExtensionContext.StoreScope?,
-        namespace: ExtensionContext.Namespace?
-    ): ExtensionContext.Store? = null
+        scope: ExtensionContext.StoreScope,
+        namespace: ExtensionContext.Namespace
+    ): ExtensionContext.Store {
+        TODO("Not yet implemented")
+    }
 
     override fun getExecutionMode(): ExecutionMode = ExecutionMode.SAME_THREAD
-    override fun getExecutableInvoker(): ExecutableInvoker? = null
+    override fun getExecutableInvoker(): ExecutableInvoker {
+        TODO("Not yet implemented")
+    }
 }

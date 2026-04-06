@@ -48,10 +48,8 @@ plugins {
     id("net.ltgt.errorprone")
     id("pmd-settings")
     id("project-report")
-    id("dokka-for-java")
     kotlin("jvm")
     id("detekt-code-analysis")
-    id("dokka-for-kotlin")
     id("org.jetbrains.kotlinx.kover")
     id("module-testing")
 }
@@ -165,8 +163,7 @@ fun Module.setTaskDependencies(generatedDir: String) {
 
 fun Module.configureGitHubPages() {
     val docletVersion = project.version.toString()
-    updateGitHubPages(docletVersion) {
-        allowInternalJavadoc.set(true)
+    updateGitHubPages {
         rootFolder.set(rootDir)
     }
 }

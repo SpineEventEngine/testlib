@@ -40,13 +40,25 @@ import io.spine.gradle.repo.standardToSpineSdk
 import io.spine.gradle.report.license.LicenseReporter
 import io.spine.gradle.report.pom.PomGenerator
 
+buildscript {
+    standardSpineSdkRepositories()
+    doForceVersions(configurations)
+    dependencies {
+        classpath(io.spine.dependency.local.ToolBase.protobufSetupPlugins)
+    }
+}
+
 plugins {
     id("module")
-    `compile-protobuf`
+    id("com.google.protobuf")
     id("module-testing")
     `gradle-doctor`
     `project-report`
+    `dokka-setup`
 }
+apply(plugin = "io.spine.descriptor-set-file")
+apply(plugin = "io.spine.generated-sources")
+
 apply<IncrementGuard>()
 
 apply(from = "$rootDir/version.gradle.kts")
@@ -95,14 +107,18 @@ dependencies {
 }
 
 spinePublishing {
+    toolArtifactPrefix = "NONE"
     destinations = with(PublishingRepos) {
         setOf(
             cloudArtifactRegistry,
             gitHub("testlib")
         )
     }
-    dokkaJar {
-        java = true
+}
+
+protobuf {
+    protoc {
+        artifact = Protobuf.compiler
     }
 }
 
