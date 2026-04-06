@@ -2,7 +2,7 @@
 [![codecov][codecov-badge]][codecov] &nbsp;
 [![license][license-badge]][license]
 
-# Spine Testlib
+# Spine Base TestLib
 
 This module provides utilities for testing in Spine SDK subprojects. 
 These utilities may also be handy for the users of the Spine SDK.
@@ -21,7 +21,7 @@ To use Spine Testlib in your Gradle project:
 
 ```kotlin
 dependencies {
-    testImplementation("io.spine.tools:spine-testlib:${version}")
+    testImplementation("io.spine.tools:base-testlib:${version}")
 }
 ```
 
