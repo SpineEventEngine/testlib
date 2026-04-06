@@ -107,7 +107,12 @@ dependencies {
 }
 
 spinePublishing {
-    toolArtifactPrefix = "NONE"
+    // We have to have a prefix for this library because it is going to be exposed
+    // as API dependency from modules that also, conventionally, called `testlib`.
+    // Since Gradle attempts to resolve a dependency using Maven coordinates at
+    // the build time, it will fail to resolve the `test-fixtures` capability if there are
+    // two artifacts with the "same" coordinates, that is, `io.spine.tools:testlib:$version`.
+    toolArtifactPrefix = "base-"
     destinations = with(PublishingRepos) {
         setOf(
             cloudArtifactRegistry,
