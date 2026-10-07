@@ -1,33 +1,22 @@
 /*
- * Copyright 2026, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 @file:Suppress("TooManyFunctions")
 
 package io.spine.gradle.publish
 
+import io.spine.dependency.local.Spine
 import io.spine.gradle.repo.Repository
 import java.util.Locale
 import org.gradle.api.Project
@@ -64,7 +53,7 @@ import org.gradle.kotlin.dsl.findByType
  * ### Filtering out test-only modules
  *
  * Sometimes a functional or an integration test requires a significant amount of
- * configuration code which is better understood when isolated into a separate module.
+ * configuration code that is better understood when isolated into a separate module.
  * Conventionally, we use the `-tests` suffix for naming such modules.
  *
  * In order to avoid publishing of such a test-only module, we use the following extensions
@@ -79,7 +68,6 @@ import org.gradle.kotlin.dsl.findByType
  * This code works for most of the projects.
  *
  * ### Arranging custom publishing for a module
- * ```kotlin
  *
  * 1. Modify the list of standardly published modules in the root project like this:
  *
@@ -97,6 +85,10 @@ import org.gradle.kotlin.dsl.findByType
  * }
  * ```
  * 2. Arrange the custom publishing in the `my-custom-module` project.
+ *
+ * 3. For a publication of a file made with `artifact(...)`, rather than of a software component,
+ *    describe what its SBOM lists by calling [sbom] on the publication: the configuration holding
+ *    the dependencies its POM declares, and what the artifact bundles.
  *
  * ## Using in a single-module project
  *
@@ -119,7 +111,7 @@ import org.gradle.kotlin.dsl.findByType
  * `spinePublishing` extension within `subprojectA` itself would lead to an exception.
  *
  * In Gradle, in order to publish something somewhere, one should create a publication. In each
- * of published modules, the extension will create a [publication][StandardJavaPublicationHandler]
+ * of the published modules, the extension will create a [publication][StandardJavaPublicationHandler]
  * named "mavenJava". All artifacts published by this extension belong to this publication.
  *
  * ## Published artifacts
@@ -148,10 +140,8 @@ import org.gradle.kotlin.dsl.findByType
  */
 fun Project.spinePublishing(block: SpinePublishing.() -> Unit): SpinePublishing {
     apply<MavenPublishPlugin>()
-    val name = SpinePublishing::class.java.simpleName
-        .replaceFirstChar { it.lowercase(Locale.getDefault()) }
     val extension = with(extensions) {
-        findByType<SpinePublishing>() ?: create(name, project)
+        findByType<SpinePublishing>() ?: create(SpinePublishing.extensionName, project)
     }
     extension.run {
         block()
@@ -191,6 +181,12 @@ open class SpinePublishing(private val project: Project) {
          * to a tool module's artifact ID.
          */
         const val NONE_PREFIX = "NONE"
+
+        /**
+         * The name of the extension registered in a Gradle project.
+         */
+        val extensionName: String = SpinePublishing::class.java.simpleName
+            .replaceFirstChar { it.lowercase(Locale.ROOT) }
     }
 
     private val testJar = TestJar()
@@ -331,6 +327,8 @@ open class SpinePublishing(private val project: Project) {
             val jarFlags = JarFlags.create(project.name, testJar)
             project.setUpPublishing(jarFlags)
         }
+        PublicationChecksums.registerTasks(project, projectsToPublish)
+        PublicationSbom.registerTasks(project, projectsToPublish)
     }
 
     /**
@@ -345,13 +343,14 @@ open class SpinePublishing(private val project: Project) {
      *
      * @see modules
      */
-    private fun projectsToPublish(): Collection<Project> {
+    fun projectsToPublish(): Set<Project> {
         if (project.subprojects.isEmpty()) {
             return setOf(project)
         }
         return modules.union(modulesWithCustomPublishing)
             .map { name -> project.project(name) }
             .ifEmpty { setOf(project) }
+            .toSet()
     }
 
     /**
@@ -359,7 +358,7 @@ open class SpinePublishing(private val project: Project) {
      *
      * Firstly, an instance of [PublicationHandler] is created for the project depending
      * on the nature of the publication process configured.
-     * Then, this the handler is scheduled to apply on [Project.afterEvaluate].
+     * Then, the handler is scheduled to apply on [Project.afterEvaluate].
      *
      * General rule of thumb is to avoid using [Project.afterEvaluate] of this closure,
      * as it configures a project when its configuration is considered completed.
@@ -373,7 +372,7 @@ open class SpinePublishing(private val project: Project) {
      * Let's suppose they are declared in a module's build file. It is a common practice.
      * But publishing of the module is configured from a root project's build file.
      * By the time when we need to specify them, we just don't know them.
-     * As the result, we have to use [Project.afterEvaluate] in order to guarantee that
+     * As a result, we have to use [Project.afterEvaluate] in order to guarantee that
      * the module will be configured by the time we configure publishing for it.
      */
     private fun Project.setUpPublishing(jarFlags: JarFlags) {
@@ -395,7 +394,7 @@ open class SpinePublishing(private val project: Project) {
      * If there is a local instance of [io.spine.gradle.publish.SpinePublishing] extension,
      * the [destinations] are obtained from this instance.
      * Otherwise, the function attempts to obtain it from a [parent project][Project.getParent].
-     * If there is no a parent project, an empty set is returned.
+     * If there is no parent project, an empty set is returned.
      *
      * The normal execution should end up at the root project of a multi-module project
      * if there are no custom destinations specified by the local extension.
@@ -403,7 +402,7 @@ open class SpinePublishing(private val project: Project) {
     private fun Project.publishTo(): Set<Repository> {
         val ext = localSpinePublishing
         if (ext != null && ext::destinations.isInitialized) {
-            return destinations
+            return ext.destinations
         }
         return parent?.publishTo() ?: emptySet()
     }
@@ -435,7 +434,7 @@ open class SpinePublishing(private val project: Project) {
     }
 
     private val Project.isTool: Boolean
-        get() = group == "io.spine.tools"
+        get() = group == Spine.toolsGroup
 
     /**
      * Ensures that all modules, marked as included into [testJar] publishing,

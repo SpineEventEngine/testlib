@@ -1,31 +1,20 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.gradle.publish
 
+import DocumentationSettings
 import LicenseSettings
 import io.spine.gradle.artifactId
 import io.spine.gradle.isSnapshot
@@ -109,7 +98,7 @@ sealed class PublicationHandler(
     }
 
     /**
-     * Either handles publications already declared in the associated [project]
+     * Either handles the publications of the associated [project]
      * or creates new ones.
      */
     abstract fun handlePublications()
@@ -133,28 +122,71 @@ sealed class PublicationHandler(
      *  * [version][Project.getVersion];
      *  * [description][Project.getDescription].
      *
-     * The [artifactId] of the publication is copied from the project
-     * [extension property][io.spine.gradle.artifactId] of the same name.
+     * The [artifactId] is derived from the project
+     * [extension property][io.spine.gradle.artifactId] of the same name, combined with
+     * the platform-specific suffix already present in the publication's artifact ID.
+     * This preserves Kotlin Multiplatform suffixes such as `-jvm`.
+     *
+     * For example, if the project artifact ID is `spine-logging` and the publication's
+     * current artifact ID is `logging-jvm` (set by the KMP plugin), the resulting
+     * artifact ID will be `spine-logging-jvm`.
+     *
+     * The attributes describing the project as a whole are set
+     * by [copyProjectWideAttributes].
+     */
+    protected fun MavenPublication.copyProjectAttributes() {
+        groupId = project.group.toString()
+        // Add the proper prefix to the `artifactId`.
+        // The default `artifactId` is either `project.name` or
+        // the `project.name` with the platform suffix of a KMM distribution.
+        artifactId = if (artifactId.startsWith(project.name)) {
+            val platformSuffix = artifactId.removePrefix(project.name)
+            val replacedId = project.artifactId + platformSuffix
+            project.logger.info(
+                "The project `${project.name}` got modified artifact: `$replacedId`."
+            )
+            replacedId
+        } else {
+            project.logger.info(
+                "The `artifactId` for the project `${project.name}` stays: `$artifactId`."
+            )
+            // This is an unlikely case of `artifactId` being set to something unrelated
+            // to the project name. Let's keep it as is.
+            artifactId
+        }
+        version = project.version.toString()
+        pom.description.set(project.description)
+        copyProjectWideAttributes()
+    }
+
+    /**
+     * Sets the POM attributes of this [MavenPublication] that describe
+     * the [project] as a whole, rather than the published artifact.
+     *
+     * The inception year of Spine is taken from [InceptionYear].
      *
      * The Apache Software License 2.0 is set as the only license
-     * under which the published artifact is distributed via [LicenseSettings]
+     * under which the published artifact is distributed via [LicenseSettings].
      *
      * The source control management attributes are obtained from [DocumentationSettings].
+     *
+     * Unlike [copyProjectAttributes], this function leaves the coordinates and
+     * the description of the publication intact. So, it also applies to a publication
+     * that identifies something other than the artifact of the project,
+     * such as a Gradle plugin marker.
      *
      * @see LicenseSettings
      * @see DocumentationSettings
      */
-    protected fun MavenPublication.copyProjectAttributes() {
-        groupId = project.group.toString()
-        artifactId = project.artifactId
-        version = project.version.toString()
-        pom.description.set(project.description)
+    protected fun MavenPublication.copyProjectWideAttributes() {
         pom.inceptionYear.set(InceptionYear.value)
         pom.licenses {
             license {
                 name.set(LicenseSettings.name)
                 url.set(LicenseSettings.url)
-                distribution.set(LicenseSettings.url)
+                // It's either `"repo"` or `"manual"`.
+                // https://maven.apache.org/ref/3.9.15/maven-model/apidocs/org/apache/maven/model/License.html#setDistribution(java.lang.String)
+                distribution.set("repo")
             }
         }
         pom.scm {
@@ -210,7 +242,7 @@ sealed class PublicationHandler(
          * If the handler for the given [project] was already created, the handler
          * gets new [destinations], [overwriting][publishTo] previously specified.
          *
-         * @return the handler for the given project which would handle publishing to
+         * @return the handler for the given project that would handle publishing to
          *  the specified [destinations].
          */
         fun serving(project: Project, destinations: Set<Repository>, vararg params: Any): H {
