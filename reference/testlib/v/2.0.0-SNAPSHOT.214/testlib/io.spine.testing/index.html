@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>io.spine.testing</title>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<link href="../../images/logo-icon.svg">
+<link href="../../styles/custom-styles.css" rel="Stylesheet">
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../index.html" tabindex="1">
+                    testlib
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+2.0.0-SNAPSHOT.214        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":/main"
+                                       data-filter=":/main"/>
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    testlib
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="package" id="content" pageIds="testlib::io.spine.testing////PointingToDeclaration//-251573632">
+  <div class="breadcrumbs"><a href="../../index.html">testlib</a><span class="delimiter">/</span><span class="current">io.spine.testing</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+    <div class="platform-hinted UnderCoverText" data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><p class="paragraph">Utility classes for framework testing.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="-343328466%2FClasslikes%2F-251573632" anchor-label="Assertions" id="-343328466%2FClasslikes%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-assertions/index.html"><span><span>Assertions</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-343328466%2FClasslikes%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-assertions/index.html">Assertions</a></div><div class="brief ">Convenience assertions accompanying <span data-unresolved-link="org.junit.jupiter.api/Assertions///PointingToDeclaration/">org.junit.jupiter.api.Assertions</span>, <span data-unresolved-link="com.google.common.truth/Truth///PointingToDeclaration/">com.google.common.truth.Truth</span>, and <span data-unresolved-link="com.google.common.truth/Truth8///PointingToDeclaration/">com.google.common.truth.Truth8</span>.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="710546937%2FClasslikes%2F-251573632" anchor-label="ClassTest" id="710546937%2FClasslikes%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-class-test/index.html"><span>Class</span><wbr></wbr><span><span>Test</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="710546937%2FClasslikes%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-class-test/index.html">ClassTest</a><span class="token operator">&lt;</span><a href="-class-test/index.html">C</a><span class="token operator">&gt;</span></div><div class="brief ">Abstract base for test suites that test a class (e.g.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="92251498%2FClasslikes%2F-251573632" anchor-label="Correspondences" id="92251498%2FClasslikes%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-correspondences/index.html"><span><span>Correspondences</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="92251498%2FClasslikes%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-correspondences/index.html">Correspondences</a></div><div class="brief ">A factory of <span data-unresolved-link="com.google.common.truth/Correspondence///PointingToDeclaration/">Correspondence</span>s for constructing fluent assertions for collection elements.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="763858265%2FClasslikes%2F-251573632" anchor-label="DisplayNames" id="763858265%2FClasslikes%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-display-names/index.html"><span>Display</span><wbr></wbr><span><span>Names</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="763858265%2FClasslikes%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-display-names/index.html">DisplayNames</a></div><div class="brief ">A storage for the common JUnit 5 test <a href="https://junit.org/junit5/docs/5.0.3/api/org/junit/jupiter/api/DisplayName.html"> display names</a>.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1687400253%2FClasslikes%2F-251573632" anchor-label="ReflectiveBuilder" id="-1687400253%2FClasslikes%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-reflective-builder/index.html"><span>Reflective</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1687400253%2FClasslikes%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-reflective-builder/index.html">ReflectiveBuilder</a><span class="token operator">&lt;</span><a href="-reflective-builder/index.html">T</a><span class="token operator">&gt;</span></div><div class="brief ">The abstract base for test object builders.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1372646214%2FClasslikes%2F-251573632" anchor-label="SingletonTest" id="1372646214%2FClasslikes%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-singleton-test/index.html"><span>Singleton</span><wbr></wbr><span><span>Test</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1372646214%2FClasslikes%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-singleton-test/index.html">SingletonTest</a><span class="token operator">&lt;</span><a href="-singleton-test/index.html">S</a><span class="token operator">&gt;</span> : <a href="-class-test/index.html">ClassTest</a><span class="token operator">&lt;</span><a href="-singleton-test/index.html">S</a><span class="token operator">&gt; </span></div><div class="brief ">Abstract base for testing classes that implement a singleton pattern.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1084426860%2FClasslikes%2F-251573632" anchor-label="SlowTest" id="1084426860%2FClasslikes%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-slow-test/index.html"><span>Slow</span><wbr></wbr><span><span>Test</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1084426860%2FClasslikes%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/annotation/Retention.html"><span class="token annotation builtin">Retention</span></a><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/annotation/RetentionPolicy.html#RUNTIME">RUNTIME</a></span><wbr></wbr><span class="token punctuation">)</span></div><div class="block"><span class="token annotation builtin">@</span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/annotation/Target.html"><span class="token annotation builtin">Target</span></a><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="token punctuation">[</span><span class="token punctuation">]</span></span><wbr></wbr><span class="token punctuation">)</span></div><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="org.junit.jupiter.api/Tag///PointingToDeclaration/"><span class="token annotation builtin">Tag</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><a href="-slow-test/index.html">SlowTest.TAG</a></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">annotation class </span><a href="-slow-test/index.html">SlowTest</a></div><div class="brief ">Marks tests which are known to be slow and should not normally be run together with the main test suite.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-740307190%2FClasslikes%2F-251573632" anchor-label="StubMessage" id="-740307190%2FClasslikes%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-stub-message/index.html"><span>Stub</span><wbr></wbr><span><span>Message</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-740307190%2FClasslikes%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-stub-message/index.html">StubMessage</a> : <span data-unresolved-link="com.google.protobuf/Message///PointingToDeclaration/">Message</span></div><div class="brief ">An abstract base for stub classes implementing the <span data-unresolved-link="com.google.protobuf/Message///PointingToDeclaration/">Message</span> interface.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-912518587%2FClasslikes%2F-251573632" anchor-label="SubjectTest" id="-912518587%2FClasslikes%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-subject-test/index.html"><span>Subject</span><wbr></wbr><span><span>Test</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-912518587%2FClasslikes%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-subject-test/index.html">SubjectTest</a><span class="token operator">&lt;</span><a href="-subject-test/index.html">S</a><span class="token operator"> : </span><span data-unresolved-link="com.google.common.truth/Subject///PointingToDeclaration/">Subject</span><span class="token operator">?</span><span class="token punctuation">, </span><a href="-subject-test/index.html">T</a><span class="token operator">&gt;</span></div><div class="brief ">An abstract base for custom <span data-unresolved-link="com.google.common.truth/Subject///PointingToDeclaration/">Subject</span> test suites.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1497265002%2FClasslikes%2F-251573632" anchor-label="TempDir" id="1497265002%2FClasslikes%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-temp-dir/index.html"><span>Temp</span><wbr></wbr><span><span>Dir</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1497265002%2FClasslikes%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-temp-dir/index.html">TempDir</a></div><div class="brief ">Utilities for creating temporary directories.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-620831405%2FClasslikes%2F-251573632" anchor-label="Testing" id="-620831405%2FClasslikes%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-testing/index.html"><span><span>Testing</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-620831405%2FClasslikes%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-testing/index.html">Testing</a></div><div class="brief ">Utilities for testing.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-143910933%2FClasslikes%2F-251573632" anchor-label="TestValues" id="-143910933%2FClasslikes%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-test-values/index.html"><span>Test</span><wbr></wbr><span><span>Values</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-143910933%2FClasslikes%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-test-values/index.html">TestValues</a></div><div class="brief ">Utility factories for test values.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-326355231%2FClasslikes%2F-251573632" anchor-label="UtilityClassTest" id="-326355231%2FClasslikes%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-utility-class-test/index.html"><span>Utility</span><wbr></wbr><span>Class</span><wbr></wbr><span><span>Test</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-326355231%2FClasslikes%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-utility-class-test/index.html">UtilityClassTest</a><span class="token operator">&lt;</span><a href="-utility-class-test/index.html">C</a><span class="token operator">&gt;</span> : <a href="-class-test/index.html">ClassTest</a><span class="token operator">&lt;</span><a href="-utility-class-test/index.html">C</a><span class="token operator">&gt; </span></div><div class="brief ">Abstract base for test suites testing utility classes.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="718866463%2FFunctions%2F-251573632" anchor-label="assertDoesNotExist" id="718866463%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="assert-does-not-exist.html"><span>assert</span><wbr></wbr><span>Does</span><wbr></wbr><span>Not</span><wbr></wbr><span><span>Exist</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="718866463%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="assert-does-not-exist.html"><span class="token function">assertDoesNotExist</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fileOrDir<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/File.html">File</a><span class="token punctuation">, </span></span><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="assert-does-not-exist.html"><span class="token function">assertDoesNotExist</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fileOrDir<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html">Path</a><span class="token punctuation">, </span></span><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Asserts that the given <a href="assert-does-not-exist.html">file or directory</a> does not exist.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-473566947%2FFunctions%2F-251573632" anchor-label="assertExists" id="-473566947%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="assert-exists.html"><span>assert</span><wbr></wbr><span><span>Exists</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-473566947%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="assert-exists.html"><span class="token function">assertExists</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fileOrDir<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/File.html">File</a><span class="token punctuation">, </span></span><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><a href="assert-exists.html"><span class="token function">assertExists</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fileOrDir<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html">Path</a><span class="token punctuation">, </span></span><span class="parameter ">message<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Asserts that the given <a href="assert-exists.html">file or directory</a> exists.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1304349693%2FFunctions%2F-251573632" anchor-label="assertThat" id="-1304349693%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="assert-that.html"><span>assert</span><wbr></wbr><span><span>That</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1304349693%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="assert-that.html">T</a><span class="token operator"> : </span><span data-unresolved-link="com.google.protobuf/Message///PointingToDeclaration/">Message</span><span class="token operator">&gt; </span><a href="assert-that.html"><span class="token function">assertThat</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">m<span class="token operator">: </span><a href="assert-that.html">T</a><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Allows to write:</p></div><div class="symbol monospace"><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="assert-that.html">T</a><span class="token operator">&gt; </span><a href="assert-that.html"><span class="token function">assertThat</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">optional<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html">Optional</a><span class="token operator">&lt;</span><a href="assert-that.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth/OptionalSubject///PointingToDeclaration/">OptionalSubject</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="assert-that.html"><span class="token function">assertThat</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">string<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth/StringSubject///PointingToDeclaration/">StringSubject</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="assert-that.html">T</a><span class="token operator">&gt; </span><a href="assert-that.html"><span class="token function">assertThat</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">iterable<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><a href="assert-that.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth/IterableSubject///PointingToDeclaration/">IterableSubject</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Allows writing:</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-853318707%2FFunctions%2F-251573632" anchor-label="hasPrivateParameterlessCtor" id="-853318707%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="has-private-parameterless-ctor.html"><span>has</span><wbr></wbr><span>Private</span><wbr></wbr><span>Parameterless</span><wbr></wbr><span><span>Ctor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-853318707%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="has-private-parameterless-ctor.html">C</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="has-private-parameterless-ctor.html"><span class="token function">hasPrivateParameterlessCtor</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Tells if the class <a href="has-private-parameterless-ctor.html">C</a> has private constructor with no parameters.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="578306909%2FFunctions%2F-251573632" anchor-label="nullPointerTester" id="578306909%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="null-pointer-tester.html"><span>null</span><wbr></wbr><span>Pointer</span><wbr></wbr><span><span>Tester</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="578306909%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="null-pointer-tester.html"><span class="token function">nullPointerTester</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><span data-unresolved-link="com.google.common.testing/NullPointerTester///PointingToDeclaration/">NullPointerTester</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span data-unresolved-link="com.google.common.testing/NullPointerTester///PointingToDeclaration/">NullPointerTester</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.common.testing/NullPointerTester///PointingToDeclaration/">NullPointerTester</span></div><div class="brief "><p class="paragraph">Creates <span data-unresolved-link="com.google.common.testing/NullPointerTester///PointingToDeclaration/">NullPointerTester</span> and runs the <a href="null-pointer-tester.html">block</a> on it.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_FUNCTION">
+        <h2 class="tableheader">Inherited functions</h2>
+        <div class="table"><a data-name="1600532532%2FFunctions%2F-251573632" anchor-label="comparingExpectedFieldsOnly" id="1600532532%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="comparing-expected-fields-only.html"><span>comparing</span><wbr></wbr><span>Expected</span><wbr></wbr><span>Fields</span><wbr></wbr><span><span>Only</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1600532532%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="comparing-expected-fields-only.html"><span class="token function">comparingExpectedFieldsOnly</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1924433299%2FFunctions%2F-251573632" anchor-label="ignoringCase" id="-1924433299%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ignoring-case.html"><span>ignoring</span><wbr></wbr><span><span>Case</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1924433299%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth/StringSubject///PointingToDeclaration/">StringSubject</span><span class="token punctuation">.</span><a href="ignoring-case.html"><span class="token function">ignoringCase</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth/StringSubject.CaseInsensitiveStringComparison///PointingToDeclaration/">StringSubject.CaseInsensitiveStringComparison</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Allows writing:</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2108897955%2FFunctions%2F-251573632" anchor-label="ignoringExtraRepeatedFieldElements" id="2108897955%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ignoring-extra-repeated-field-elements.html"><span>ignoring</span><wbr></wbr><span>Extra</span><wbr></wbr><span>Repeated</span><wbr></wbr><span>Field</span><wbr></wbr><span><span>Elements</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2108897955%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-extra-repeated-field-elements.html"><span class="token function">ignoringExtraRepeatedFieldElements</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2027618445%2FFunctions%2F-251573632" anchor-label="ignoringExtraRepeatedFieldElementsOfFieldDescriptors" id="-2027618445%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ignoring-extra-repeated-field-elements-of-field-descriptors.html"><span>ignoring</span><wbr></wbr><span>Extra</span><wbr></wbr><span>Repeated</span><wbr></wbr><span>Field</span><wbr></wbr><span>Elements</span><wbr></wbr><span>Of</span><wbr></wbr><span>Field</span><wbr></wbr><span><span>Descriptors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2027618445%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-extra-repeated-field-elements-of-field-descriptors.html"><span class="token function">ignoringExtraRepeatedFieldElementsOfFieldDescriptors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fieldDescriptors<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-extra-repeated-field-elements-of-field-descriptors.html"><span class="token function">ignoringExtraRepeatedFieldElementsOfFieldDescriptors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">first<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>rest<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1436659549%2FFunctions%2F-251573632" anchor-label="ignoringExtraRepeatedFieldElementsOfFields" id="-1436659549%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ignoring-extra-repeated-field-elements-of-fields.html"><span>ignoring</span><wbr></wbr><span>Extra</span><wbr></wbr><span>Repeated</span><wbr></wbr><span>Field</span><wbr></wbr><span>Elements</span><wbr></wbr><span>Of</span><wbr></wbr><span><span>Fields</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1436659549%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-extra-repeated-field-elements-of-fields.html"><span class="token function">ignoringExtraRepeatedFieldElementsOfFields</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fieldNumbers<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-extra-repeated-field-elements-of-fields.html"><span class="token function">ignoringExtraRepeatedFieldElementsOfFields</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">firstFieldNumber<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>rest<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1954601415%2FFunctions%2F-251573632" anchor-label="ignoringFieldAbsence" id="1954601415%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ignoring-field-absence.html"><span>ignoring</span><wbr></wbr><span>Field</span><wbr></wbr><span><span>Absence</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1954601415%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-field-absence.html"><span class="token function">ignoringFieldAbsence</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1317205133%2FFunctions%2F-251573632" anchor-label="ignoringFieldAbsenceOfFieldDescriptors" id="-1317205133%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ignoring-field-absence-of-field-descriptors.html"><span>ignoring</span><wbr></wbr><span>Field</span><wbr></wbr><span>Absence</span><wbr></wbr><span>Of</span><wbr></wbr><span>Field</span><wbr></wbr><span><span>Descriptors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1317205133%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-field-absence-of-field-descriptors.html"><span class="token function">ignoringFieldAbsenceOfFieldDescriptors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fieldDescriptors<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-field-absence-of-field-descriptors.html"><span class="token function">ignoringFieldAbsenceOfFieldDescriptors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">firstFieldDescriptor<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>rest<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1678736157%2FFunctions%2F-251573632" anchor-label="ignoringFieldAbsenceOfFields" id="-1678736157%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ignoring-field-absence-of-fields.html"><span>ignoring</span><wbr></wbr><span>Field</span><wbr></wbr><span>Absence</span><wbr></wbr><span>Of</span><wbr></wbr><span><span>Fields</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1678736157%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-field-absence-of-fields.html"><span class="token function">ignoringFieldAbsenceOfFields</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fieldNumbers<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-field-absence-of-fields.html"><span class="token function">ignoringFieldAbsenceOfFields</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">firstFieldNumber<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>rest<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="477519283%2FFunctions%2F-251573632" anchor-label="ignoringFieldDescriptors" id="477519283%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ignoring-field-descriptors.html"><span>ignoring</span><wbr></wbr><span>Field</span><wbr></wbr><span><span>Descriptors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="477519283%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-field-descriptors.html"><span class="token function">ignoringFieldDescriptors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fieldDescriptors<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-field-descriptors.html"><span class="token function">ignoringFieldDescriptors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">firstFieldDescriptor<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>rest<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-273525789%2FFunctions%2F-251573632" anchor-label="ignoringFields" id="-273525789%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ignoring-fields.html"><span>ignoring</span><wbr></wbr><span><span>Fields</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-273525789%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-fields.html"><span class="token function">ignoringFields</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fieldNumbers<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-fields.html"><span class="token function">ignoringFields</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">firstFieldNumber<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>rest<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-886100329%2FFunctions%2F-251573632" anchor-label="ignoringFieldScope" id="-886100329%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ignoring-field-scope.html"><span>ignoring</span><wbr></wbr><span>Field</span><wbr></wbr><span><span>Scope</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-886100329%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-field-scope.html"><span class="token function">ignoringFieldScope</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fieldScope<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/FieldScope///PointingToDeclaration/">FieldScope</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-203727492%2FFunctions%2F-251573632" anchor-label="ignoringRepeatedFieldOrder" id="-203727492%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ignoring-repeated-field-order.html"><span>ignoring</span><wbr></wbr><span>Repeated</span><wbr></wbr><span>Field</span><wbr></wbr><span><span>Order</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-203727492%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-repeated-field-order.html"><span class="token function">ignoringRepeatedFieldOrder</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="884547667%2FFunctions%2F-251573632" anchor-label="ignoringRepeatedFieldOrderOfFieldDescriptors" id="884547667%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ignoring-repeated-field-order-of-field-descriptors.html"><span>ignoring</span><wbr></wbr><span>Repeated</span><wbr></wbr><span>Field</span><wbr></wbr><span>Order</span><wbr></wbr><span>Of</span><wbr></wbr><span>Field</span><wbr></wbr><span><span>Descriptors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="884547667%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-repeated-field-order-of-field-descriptors.html"><span class="token function">ignoringRepeatedFieldOrderOfFieldDescriptors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fieldDescriptors<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-repeated-field-order-of-field-descriptors.html"><span class="token function">ignoringRepeatedFieldOrderOfFieldDescriptors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">firstFieldDescriptor<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>rest<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-878781373%2FFunctions%2F-251573632" anchor-label="ignoringRepeatedFieldOrderOfFields" id="-878781373%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="ignoring-repeated-field-order-of-fields.html"><span>ignoring</span><wbr></wbr><span>Repeated</span><wbr></wbr><span>Field</span><wbr></wbr><span>Order</span><wbr></wbr><span>Of</span><wbr></wbr><span><span>Fields</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-878781373%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-repeated-field-order-of-fields.html"><span class="token function">ignoringRepeatedFieldOrderOfFields</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fieldNumbers<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="ignoring-repeated-field-order-of-fields.html"><span class="token function">ignoringRepeatedFieldOrderOfFields</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">firstFieldNumber<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>rest<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1003727328%2FFunctions%2F-251573632" anchor-label="isInstanceOf" id="1003727328%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-instance-of.html"><span>is</span><wbr></wbr><span>Instance</span><wbr></wbr><span><span>Of</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1003727328%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="is-instance-of.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><span data-unresolved-link="com.google.common.truth/Subject///PointingToDeclaration/">Subject</span><span class="token punctuation">.</span><a href="is-instance-of.html"><span class="token function">isInstanceOf</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Allows writing:</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1601588003%2FFunctions%2F-251573632" anchor-label="reportingMismatchesOnly" id="-1601588003%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="reporting-mismatches-only.html"><span>reporting</span><wbr></wbr><span>Mismatches</span><wbr></wbr><span><span>Only</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1601588003%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="reporting-mismatches-only.html"><span class="token function">reportingMismatchesOnly</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-808010684%2FFunctions%2F-251573632" anchor-label="setDefault" id="-808010684%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-default.html"><span>set</span><wbr></wbr><span><span>Default</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-808010684%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="set-default.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><span data-unresolved-link="com.google.common.testing/NullPointerTester///PointingToDeclaration/">NullPointerTester</span><span class="token punctuation">.</span><a href="set-default.html"><span class="token function">setDefault</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="set-default.html">T</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.common.testing/NullPointerTester///PointingToDeclaration/">NullPointerTester</span></div><div class="brief "><p class="paragraph">Allows using generic parameter of the function instead of <code class="lang-kotlin">MyType::class.java</code> as the first parameter type.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="526656527%2FFunctions%2F-251573632" anchor-label="testAllPublicConstructors" id="526656527%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="test-all-public-constructors.html"><span>test</span><wbr></wbr><span>All</span><wbr></wbr><span>Public</span><wbr></wbr><span><span>Constructors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="526656527%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="test-all-public-constructors.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><span data-unresolved-link="com.google.common.testing/NullPointerTester///PointingToDeclaration/">NullPointerTester</span><span class="token punctuation">.</span><a href="test-all-public-constructors.html"><span class="token function">testAllPublicConstructors</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Allows to use generic parameter of the function instead of <code class="lang-kotlin">MyType::class.java</code> as the first parameter type.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-199729692%2FFunctions%2F-251573632" anchor-label="testAllPublicStaticMethods" id="-199729692%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="test-all-public-static-methods.html"><span>test</span><wbr></wbr><span>All</span><wbr></wbr><span>Public</span><wbr></wbr><span>Static</span><wbr></wbr><span><span>Methods</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-199729692%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="test-all-public-static-methods.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><span data-unresolved-link="com.google.common.testing/NullPointerTester///PointingToDeclaration/">NullPointerTester</span><span class="token punctuation">.</span><a href="test-all-public-static-methods.html"><span class="token function">testAllPublicStaticMethods</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Allows to use generic parameter of the function instead of <code class="lang-kotlin">MyType::class.java</code> as the first parameter type.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="951378716%2FFunctions%2F-251573632" anchor-label="unpackingAnyUsing" id="951378716%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="unpacking-any-using.html"><span>unpacking</span><wbr></wbr><span>Any</span><wbr></wbr><span><span>Using</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="951378716%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="unpacking-any-using.html"><span class="token function">unpackingAnyUsing</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">typeRegistry<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/TypeRegistry///PointingToDeclaration/">TypeRegistry</span><span class="token punctuation">, </span></span><span class="parameter ">extensionRegistry<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/ExtensionRegistry///PointingToDeclaration/">ExtensionRegistry</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1913646310%2FFunctions%2F-251573632" anchor-label="usingDoubleTolerance" id="1913646310%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="using-double-tolerance.html"><span>using</span><wbr></wbr><span>Double</span><wbr></wbr><span><span>Tolerance</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1913646310%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="using-double-tolerance.html"><span class="token function">usingDoubleTolerance</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">tolerance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1744925687%2FFunctions%2F-251573632" anchor-label="usingDoubleToleranceForFieldDescriptors" id="-1744925687%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="using-double-tolerance-for-field-descriptors.html"><span>using</span><wbr></wbr><span>Double</span><wbr></wbr><span>Tolerance</span><wbr></wbr><span>For</span><wbr></wbr><span>Field</span><wbr></wbr><span><span>Descriptors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1744925687%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="using-double-tolerance-for-field-descriptors.html"><span class="token function">usingDoubleToleranceForFieldDescriptors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">tolerance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">fieldDescriptors<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="using-double-tolerance-for-field-descriptors.html"><span class="token function">usingDoubleToleranceForFieldDescriptors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">tolerance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">firstFieldDescriptor<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>rest<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1022575569%2FFunctions%2F-251573632" anchor-label="usingDoubleToleranceForFields" id="-1022575569%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="using-double-tolerance-for-fields.html"><span>using</span><wbr></wbr><span>Double</span><wbr></wbr><span>Tolerance</span><wbr></wbr><span>For</span><wbr></wbr><span><span>Fields</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1022575569%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="using-double-tolerance-for-fields.html"><span class="token function">usingDoubleToleranceForFields</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">tolerance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">fieldNumbers<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="using-double-tolerance-for-fields.html"><span class="token function">usingDoubleToleranceForFields</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">tolerance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">firstFieldNumber<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>rest<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="250436714%2FFunctions%2F-251573632" anchor-label="usingFloatTolerance" id="250436714%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="using-float-tolerance.html"><span>using</span><wbr></wbr><span>Float</span><wbr></wbr><span><span>Tolerance</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="250436714%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="using-float-tolerance.html"><span class="token function">usingFloatTolerance</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">tolerance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-766434903%2FFunctions%2F-251573632" anchor-label="usingFloatToleranceForFieldDescriptors" id="-766434903%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="using-float-tolerance-for-field-descriptors.html"><span>using</span><wbr></wbr><span>Float</span><wbr></wbr><span>Tolerance</span><wbr></wbr><span>For</span><wbr></wbr><span>Field</span><wbr></wbr><span><span>Descriptors</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-766434903%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="using-float-tolerance-for-field-descriptors.html"><span class="token function">usingFloatToleranceForFieldDescriptors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">tolerance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter ">fieldDescriptors<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="using-float-tolerance-for-field-descriptors.html"><span class="token function">usingFloatToleranceForFieldDescriptors</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">tolerance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter ">firstFieldDescriptor<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>rest<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.FieldDescriptor///PointingToDeclaration/">Descriptors.FieldDescriptor</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1055194187%2FFunctions%2F-251573632" anchor-label="usingFloatToleranceForFields" id="1055194187%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="using-float-tolerance-for-fields.html"><span>using</span><wbr></wbr><span>Float</span><wbr></wbr><span>Tolerance</span><wbr></wbr><span>For</span><wbr></wbr><span><span>Fields</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1055194187%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="using-float-tolerance-for-fields.html"><span class="token function">usingFloatToleranceForFields</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">tolerance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter ">fieldNumbers<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-iterable/index.html">Iterable</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="using-float-tolerance-for-fields.html"><span class="token function">usingFloatToleranceForFields</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">tolerance<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter ">firstFieldNumber<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>rest<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1223645447%2FFunctions%2F-251573632" anchor-label="withPartialScope" id="1223645447%2FFunctions%2F-251573632" data-filterable-set=":/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":/main" data-filterable-set=":/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="with-partial-scope.html"><span>with</span><wbr></wbr><span>Partial</span><wbr></wbr><span><span>Scope</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1223645447%2FFunctions%2F-251573632"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoSubject///PointingToDeclaration/">ProtoSubject</span><span class="token punctuation">.</span><a href="with-partial-scope.html"><span class="token function">withPartialScope</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fieldScope<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/FieldScope///PointingToDeclaration/">FieldScope</span><span class="token punctuation">, </span></span><span class="parameter ">assertions<span class="token operator">: </span><span data-unresolved-link="com.google.common.truth.extensions.proto/ProtoFluentAssertion///PointingToDeclaration/">ProtoFluentAssertion</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright 2026 CodeMatters, Lda.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
