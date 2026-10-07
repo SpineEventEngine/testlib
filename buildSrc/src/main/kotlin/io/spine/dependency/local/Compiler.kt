@@ -1,27 +1,15 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.dependency.local
@@ -55,16 +43,16 @@ import io.spine.dependency.Dependency
  */
 @Suppress(
     "unused" /* Some subprojects do not use the Compiler directly. */,
-    "ConstPropertyName" /* We use custom convention for artifact properties. */,
+    "ConstPropertyName" /* We use a custom convention for artifact properties. */,
     "MemberVisibilityCanBePrivate" /* The properties are used directly by other subprojects. */,
 )
 object Compiler : Dependency() {
     const val pluginGroup = Spine.group
-    override val group = "io.spine.tools"
+    override val group = Spine.toolsGroup
     const val pluginId = "io.spine.compiler"
 
     /**
-     * Identifies the Compiler as a `classpath` dependency under `buildScript` block.
+     * Identifies the Compiler as a `classpath` dependency under the `buildScript` block.
      */
     const val module = "io.spine.tools:compiler"
 
@@ -72,7 +60,7 @@ object Compiler : Dependency() {
      * The version of the Compiler dependencies.
      */
     override val version: String
-    private const val fallbackVersion = "2.0.0-SNAPSHOT.041"
+    private const val fallbackVersion = "2.0.0-SNAPSHOT.069"
 
     /**
      * The distinct version of the Compiler used by other build tools.
@@ -81,7 +69,7 @@ object Compiler : Dependency() {
      * transitive dependencies, this is the version used to build the project itself.
      */
     val dogfoodingVersion: String
-    private const val fallbackDfVersion = "2.0.0-SNAPSHOT.041"
+    private const val fallbackDfVersion = "2.0.0-SNAPSHOT.069"
 
     /**
      * The artifact for the Compiler Gradle plugin.
@@ -114,9 +102,6 @@ object Compiler : Dependency() {
     val gradleApi
         get() = "$group:compiler-gradle-api:$version"
 
-    val cliApi
-        get() = "$group:compiler-cli-api:$version"
-
     val jvmModule = "$group:compiler-jvm"
 
     fun jvm(version: String): String =
@@ -125,8 +110,15 @@ object Compiler : Dependency() {
     val jvm
         get() = jvm(version)
 
+    /**
+     * The all-in-one ("fat") distribution of the Compiler command-line application.
+     *
+     * The artifact is named `compiler-cli-all` because it is published by
+     * the `cliFatJar` publication of the `:cli` module. Keep this name in sync with
+     * the `Artifacts.fatCli()` function of the `compiler-gradle-api` module.
+     */
     val fatCli
-        get() = "$group:compiler-fat-cli:$version"
+        get() = "$group:compiler-cli-all:$version"
 
     val testlib
         get() = "$group:compiler-testlib:$version"
@@ -138,7 +130,6 @@ object Compiler : Dependency() {
             params,
             protocPlugin,
             gradleApi,
-            cliApi,
             jvm,
             fatCli,
             testlib

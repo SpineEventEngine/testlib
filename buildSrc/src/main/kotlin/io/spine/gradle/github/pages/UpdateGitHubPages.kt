@@ -1,33 +1,22 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.gradle.github.pages
 
 import dokkaHtmlTask
 import dokkaJavadocTask
+import io.spine.gradle.SpineTaskGroup
 import io.spine.gradle.fs.LazyTempPath
 import io.spine.gradle.github.pages.TaskName.copyHtmlDocs
 import io.spine.gradle.github.pages.TaskName.copyJavadocDocs
@@ -41,7 +30,7 @@ import org.gradle.api.tasks.TaskContainer
 import org.gradle.api.tasks.TaskProvider
 
 /**
- * Registers the `updateGitHubPages` task which performs the update of
+ * Registers the `updateGitHubPages` task that performs the update of
  * the GitHub Pages with the documentation generated in Javadoc and HTML format
  * for a particular Gradle project.
  *
@@ -52,7 +41,7 @@ import org.gradle.api.tasks.TaskProvider
  * repository root. It is recommended to encrypt it in the repository and then decrypt
  * it on CI upon publication. Also, the script uses the `FORMAL_GIT_HUB_PAGES_AUTHOR`
  * environment variable to set the author email for the commits. The `gh-pages`
- * branch itself should exist before the plugin is run.
+ * branch is created automatically if it does not exist yet.
  *
  * NOTE: when changing the value of "FORMAL_GIT_HUB_PAGES_AUTHOR", one also must change
  * the SSH private (encrypted `deploy_key_rsa`) and the public
@@ -66,7 +55,7 @@ import org.gradle.api.tasks.TaskProvider
  *      REPO_SLUG: SpineEventEngine/base
  * ```
  *
- * @see UpdateGitHubPagesExtension for the extension which is used to configure
+ * @see UpdateGitHubPagesExtension for the extension that is used to configure
  *      this plugin
  */
 class UpdateGitHubPages : Plugin<Project> {
@@ -112,13 +101,15 @@ class UpdateGitHubPages : Plugin<Project> {
     }
 
     /**
-     * Registers `updateGitHubPages` task which performs no actual update, but prints
+     * Registers the `updateGitHubPages` task that performs no actual update, but prints
      * the message telling the update is skipped, since the project is in
      * its `SNAPSHOT` version.
      */
     @Suppress("unused")
     private fun Project.registerNoOpTask() {
         tasks.register(updateGitHubPages) {
+            group = SpineTaskGroup.name
+            description = "Skips the GitHub Pages update for snapshot project versions"
             doLast {
                 val project = this@registerNoOpTask
                 println(
@@ -147,6 +138,8 @@ class UpdateGitHubPages : Plugin<Project> {
         val inputs = composeJavadocInputs()
 
         register(copyJavadocDocs, Copy::class.java) {
+            group = SpineTaskGroup.name
+            description = "Copies generated Javadoc into the GitHub Pages staging folder"
             inputs.forEach { from(it) }
             into(javadocOutputFolder)
         }
@@ -163,6 +156,8 @@ class UpdateGitHubPages : Plugin<Project> {
         val inputs = composeDokkaInputs()
 
         register(copyHtmlDocs, Copy::class.java) {
+            group = SpineTaskGroup.name
+            description = "Copies generated Dokka HTML docs into the GitHub Pages staging folder"
             inputs.forEach { from(it) }
             into(htmlOutputFolder)
         }
@@ -181,6 +176,8 @@ class UpdateGitHubPages : Plugin<Project> {
 
     private fun TaskContainer.registerUpdateTask(): TaskProvider<Task> {
         return register(updateGitHubPages) {
+            group = SpineTaskGroup.name
+            description = "Publishes the generated documentation to the `gh-pages` branch"
             doLast {
                 try {
                     updateGhPages(project)
