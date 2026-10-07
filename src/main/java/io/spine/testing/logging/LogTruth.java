@@ -17,7 +17,6 @@ package io.spine.testing.logging;
 import com.google.common.flogger.FluentLogger;
 import com.google.common.truth.Subject;
 import com.google.errorprone.annotations.InlineMe;
-import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.jspecify.annotations.Nullable;
 
 import java.util.logging.Level;
@@ -31,7 +30,7 @@ import static com.google.common.truth.Truth.assert_;
  */
 public final class LogTruth {
 
-    private static final String TRUTH_CALL_REPLACEMENT = "assert_().that(actual);";
+    private static final String TRUTH_CALL_REPLACEMENT = "assert_().that(actual)";
     public static final String TRUTH_ASSERT_IMPORT = "com.google.common.truth.Truth.assert_";
 
     /** Prevents instantiation of this utility class. */
@@ -69,7 +68,7 @@ public final class LogTruth {
     /* See: https://github.com/SpineEventEngine/base/issues/612 */
     @Deprecated
     @InlineMe(replacement = TRUTH_CALL_REPLACEMENT, staticImports = TRUTH_ASSERT_IMPORT)
-    public static Subject assertThat(@NullableDecl FluentLogger.Api actual) {
+    public static Subject assertThat(FluentLogger.@Nullable Api actual) {
         return assert_().that(actual);
     }
 }

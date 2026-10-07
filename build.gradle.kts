@@ -94,6 +94,16 @@ dependencies {
     )
 }
 
+configurations.all {
+    resolutionStrategy {
+        @Suppress("DEPRECATION")
+        force(
+            io.spine.dependency.lib.Flogger.lib,
+            io.spine.dependency.lib.Flogger.Runtime.systemBackend,
+        )
+    }
+}
+
 spinePublishing {
     // We have to have a prefix for this library because it is going to be exposed
     // as API dependency from modules that are also, conventionally, called `testlib`.
