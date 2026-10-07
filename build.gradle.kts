@@ -96,6 +96,7 @@ dependencies {
 
 configurations.all {
     resolutionStrategy {
+        // Reason: `LogTruth` is still Flogger-based.
         @Suppress("DEPRECATION")
         force(
             io.spine.dependency.lib.Flogger.lib,
