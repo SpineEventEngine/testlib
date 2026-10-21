@@ -1,0 +1,6 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+
+io.spine.testing
+io.spine.testing.logging
+io.spine.testing.logging.mute
