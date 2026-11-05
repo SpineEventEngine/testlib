@@ -1,6 +1,6 @@
 
 
-# Dependencies of `io.spine.tools:base-testlib:2.0.0-SNAPSHOT.216`
+# Dependencies of `io.spine.tools:base-testlib:2.0.0-SNAPSHOT.217`
 
 ## Runtime
 1.  **Group** : com.google.auto.value. **Name** : auto-value-annotations. **Version** : 1.11.1.
@@ -956,6 +956,6 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Wed Oct 21 16:56:11 WEST 2026** using 
+This report was generated on **Wed Nov 04 20:19:27 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
